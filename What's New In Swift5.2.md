@@ -39,7 +39,7 @@ let total = Double(str)! + 5
 ```
 그러나 이전까지의 버전에서는 오류 메시지가 그다지 도움이 되지 못했습니다. 특히, 자료형 체크(Type checking)와 관련된 오류에서 그랬습니다. 이러한 문제를 Swift 5.2에서는  자료형을 체크를 개선하는 것으로 이 문제를 해결했습니다.
 
-### 더 쉬운진 문제 해결, Easier Troubleshooting
+### 더 찾기 쉬워진 오류, Easier Troubleshooting
 
 SwiftUI에 관한 아래와 같은 코드가 있다고 할 때,
 ```swift
