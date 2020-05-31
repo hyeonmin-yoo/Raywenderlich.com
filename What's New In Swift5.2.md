@@ -169,11 +169,87 @@ multiplier[4]
 > Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-6118: Mechanism to hand through #file/#line in subscripts](https://bugs.swift.org/browse/SR-6118)
 
 ## 주요 버그 개선 사항, Major Bug Fixes
+지금까지는 Swift5.2에 추가된 기능과 개선사항에 대해 이야기했습니다. 여기서부터는 고쳐진 중요한 버그에 대해서 알아보겠습니다.
 
+### 순서대로 호출 지연(Lazy) Filters, Lazy Filters are Called in Order
+ Lazy 시퀀스(sequence)나 콜렉션(Collection)에서 Chaining으로 `filter(_:)`를 호출할 때, filtering predicates는 보다 바람직한 순서대로 출력됩니다. 하지만, 이 개선사항으로 인해 기존 코드를 고쳐야 할 필요가 있습니다. 대부분의 콜렉션에서 Swift는 아래와 같이 Filtering predicates를 순서대로 호출합니다
+ ```swift
+let array = ["1", "2", "3"]
+let filtered = array
+  .filter { _ in
+    print("A")
+    return true
+  }
+  .filter { _ in
+    print("B")
+    return true
+  }
 
-### , Lazy Filters are Called in Order
+_ = Array(filtered)
+ ```
+결과는...
+```swift
+A
+A
+A
+B
+B
+B
+```
+하지만 이전 버전의 스위프트의 **지연 시퀀스 또는 콜렉션**에서는 아래와 같이 역순으로 출력 되었습니다.
+```swift
+let lazyFiltered = array.lazy
+  .filter { _ in
+    print("A")
+    return true
+  }
+  .filter { _ in
+    print("B")
+    return true
+  }
 
-### , Default Values From Outer Scopes
+_ = Array(lazyFiltered)
+```
+
+예상된(바람직한) 출력 결과:
+```swift
+A
+B
+A
+B
+A
+B
+```
+Swift 5.2 이전의 출력 결과(버그):
+```swift
+B
+A
+B
+A
+B
+A
+```
+Swift 5.2에서는 옳바르게 출력됩니다. 만약 이번 업데이트로 인해 결과 값이 반대로(예전의 방식으로) 출력된다면, 개선된 사항에 맞춰 코드를 수정할 필요가 있습니다.
+
+> Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-11841: Lazy filter runs in unexpected order](https://bugs.swift.org/browse/SR-11841)
+
+이제부터 소개될 수정 사항(Bug fixes)들은 기존 코드에 미치는 영향이 적지만 주목할 가치가 있습니다. 만약 이전에 아래와 같은 버그를 경험한적이 있다면요.
+
+### 내부함수에서 외부함수의 전달인자를 기본값으로 사용 가능 , Default Values From Outer Scopes
+이제 Swift 컴파일러는 외부함수의 전달인자(Arguments)를 캡처하는 내부함수 전달인자의 기본값(`default`)을 지원합니다.
+```swift
+func outer(x: Int) -> (Int, Int) {
+  func inner(y: Int = x) -> Int {
+    return y
+  }
+
+  return (inner(), inner(y: 0))
+}
+func generatePointer() {
+```
+이전 버전에서 위의 코드는 크래쉬를 일으켰습니다.
+
+> 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-2189: Nested function with local default value crashes](https://bugs.swift.org/browse/SR-2189)
 
 ### , Warning When Passing Dangling Pointers
 
