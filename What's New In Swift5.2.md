@@ -1,9 +1,18 @@
+> *This article/tutoral is permitted translation in Korean language by raywenderlich.com*
+
+> *이 글/튜토리얼은 raywenderlich.com의 허가를 받고 번역하였습니다.*
+
+> *전문 번역가가 아니므로 다소 오번역이 있을 수 있음을 알려드립니다.*
+
 # Swift 5.2 버전에서 달라진 것들
-[What’s New in Swift 5.2](https://www.raywenderlich.com/9224115-what-s-new-in-swift-5-2)
 
-**Version**
 
-Swift 5, iOS 13, Xcode 11
+[What’s New in Swift 5.2](https://www.raywenderlich.com/9224115-what-s-new-in-swift-5-2) by [Bill Morefiled](https://www.raywenderlich.com/u/bmorefield)
+
+
+* **Version**:  Swift 5, iOS 13, Xcode 11
+* **Level**: Intermediate
+* [**Download Materials**](https://koenig-media.raywenderlich.com/uploads/2020/04/new-swift52-1.zip)
 
 
 Swift 5.2는 Xcode 11.4이 판올림 됨에 따라 이용가능하게 되었습니다. 이 글은 스위프트 최신 버전에서 보게 될 변경사항 혹은 개선사항에 대해서 대략적으로 설명합니다.
@@ -19,8 +28,6 @@ Swift 5.2는 Xcode 11.4이 판올림 됨에 따라 이용가능하게 되었습�
 
 코드에 오류가 있으면 컴파일러는 그 오류와 위치에 대한 보다 정확한 설명을 제공하게 바뀌었습니다.
 
-After
-
 ```swift
 var str = "10"
 let total = str + 5
@@ -33,7 +40,7 @@ let total = Double(str)! + 5
 ```
 그러나 이전까지의 버전에서는 오류 메시지가 그다지 도움이 되지 못했습니다. 특히, 자료형 체크(Type checking)와 관련된 오류에서 그랬습니다. 이러한 문제를 Swift 5.2에서는  자료형을 체크를 개선하는 것으로 이 문제를 해결했습니다.
 
-## 더 쉬운진 문제 해결, Easier Troubleshooting
+### 더 쉬운진 문제 해결, Easier Troubleshooting
 
 SwiftUI에 관한 아래와 같은 코드가 있다고 할 때,
 ```swift
@@ -76,7 +83,7 @@ TextField("Angle", value: $angle, formatter: NumberFormatter.decimalFormatter)
 ```
 
 
-## SwiftUI 이외, Not Just SwiftUI
+### SwiftUI 이외, Not Just SwiftUI
 
 더 나은 오류 메시지는 SwiftUI에서 가장 많이 볼 수 있지만 다른 Swift 코드도 개선되었습니다. Fianl 프로젝트에서 swift52.playground를 열면 주석 처리된 다음과 같은 코드를 볼수 있습니다.
 
@@ -104,13 +111,35 @@ Int( )
 
 > 진단 엔진(Diagnostic engine)의 개선 사항에 대한 자세한 설명은 이 블로그 [New Diagnostic Architecture Overview](https://swift.org/blog/new-diagnostic-arch-overview/)를 참조하십시오.
 
-추가된 문법적 편의 사항, Syntactic Sugar Additions
+## 추가된 문법적 편의 사항, Syntactic Sugar Additions
 스위프트는 이미 꽤 많은 문법적 편의 사항들을 제공하고 있습니다. 이번 5.2버전에서는 개발자들이 아주 편리하다고 느낄수 있는 두 가지 새로운 기능이 추가되었습니다. 첫째는, 함수로서의 호출 타입 (Calling types as functions) 둘째는, 함수로서의 Key path 표현식(key path expressions as functions) 입니다.
 
 > **Syntactic sugar**란 언어의 문법을 보다 쉽고 간결하게 이해할 수 있도록 하는 추가 사항들을 의미합니다.
 
-## 함수로서의 호출 타입, Calling Types as Functions
+### 함수로서의 호출 타입, Calling Types as Functions
 이 새로운 기능은 Swift에 정적으로 호출가능한 값을 소개합니다. 이게 무슨 의미일까요? 더 구체적으로 말하면, 클래스(Class)나 구조체(Structure)를 함수처럼 호출할수 있다는 뜻입니다.
 
-아키텍처 개요, Architecture Overview
-사용을 더 편문법적 (Syntactic Sugar) 개선 사항들
+### 더 간결해진 문법, Cleaner Syntax
+이 새로운 기능은 Swift에 정적으로 호출가능한 값을 소개합니다. 이게 무슨 의미일까요? 더 구체적으로 말하면, 클래스(Class)나 구조체(Structure)를 함수처럼 호출할수 있다는 뜻입니다.
+
+### 머신러닝 어플리케이션 기능, Machine Lerning Application
+
+###  , Key Path Expressions as Functions
+
+###  , Subscripts With Default Arguments
+
+## 주요 버그 개선 사항, Major Bug Fixes
+
+### , Lazy Filters are Called in Order
+
+### , Default Values From Outer Scopes
+
+### , Warning When Passing Dangling Pointers
+
+### , Overridden Methods Can’t Use Incorrect Generics
+
+### , Class-Constrained Protocol Extensions
+
+### , Disambiguate Functions with Named Parameters
+
+##  , Where to Go From Here
