@@ -2,7 +2,7 @@
 
 *이 글/튜토리얼은 raywenderlich.com의 허가를 받고 번역하였습니다.*
 
-*전문 번역가가 아니므로 다소 오번역이 있을 수 있음을 알려드립니다.*
+*전문 번역가가 아니므로 다소 오역/의역/과감한 생략이 있을 수 있음을 알려드립니다.*
 
 -----
 
@@ -121,13 +121,55 @@ Int( )
 ### 더 간결해진 문법, Cleaner Syntax
 이 새로운 기능은 Swift에 정적으로 호출가능한 값을 소개합니다. 이게 무슨 의미일까요? 더 구체적으로 말하면, 클래스(Class)나 구조체(Structure)를 함수처럼 호출할수 있다는 뜻입니다.
 
-### 머신러닝 어플리케이션 기능, Machine Lerning Application
+### 머신러닝 어플리케이션, Machine Lerning Application
+이 개선사항은 특히 머신 러닝에 중점을 둔 것으로 보입니다. 원문에서 상세하게 언급한 것과 같이, 신경망 응용프로그램(Neural Network Applications)을 위한 문법(Syntax)을 정리했으고 이는 파이썬과 유사하며 상호 호환됩니다. 이를 통해, 좀 더 ML(Machine Lerning) 개발자에게 적합 해졌습니다.
+> 더 자세한 사랑에 대해서는 GitHub 페이지를 참조하십시오. [SE-0253: Callable values of user-defined nominal types](https://github.com/apple/swift-evolution/blob/master/proposals/0253-callable.md)
 
-###  , Key Path Expressions as Functions
+### 함수로 이용 가능한 Key Path 표현식들 , Key Path Expressions as Functions
+> Key Path Expressions란, Key 또는 KeyPath를 이용해서 간접적으로 데이터를 참조하거나 새로운 값을 할당하는 방법
+스위프트 5.2에서는 `(Root) -> Value` 함수를 사용하고 있는곳 이라면 `\Root.value`를 사용할 수 있도록 되었습니다.
+예를 들어,
+```swift
+orders.map { $0.email }
+```
+위와 같은 표현법을 이제는 아래와 같이 쓸수 있게 되었습니다.
+```swift
+orders.map(\.email)
+```
+위의 표현법은 오직 Key Path Literal Expressions으로 한정됩니다. 아래와 같은 밥법으로는 작성할 수 없습니다.
+```swift
+let kp = \.email
+users.map(kp)
+```
+다만 아래와 같은 방법으로 유사하게 구현할수 있습니다.
+```swift
+let asEmail: (Order) -> String = \Order.email
+orders.map(asEmail)
+```
+위의 두가지 개선 사항은 스위프트 언어를 더욱 함수 지향 프로그래밍 혹은 함수형 프로그래밍이 가능하도록 만듭니다. 이제 이 함수를, 호출한 블록(Blocks)이나 클로저(Closures)에서 사용하는 것이 가능합니다.
 
-###  , Subscripts With Default Arguments
+> 더 자세한 사항에 대해서는 GitHub 페이지를 참조하십시오.[SE-0249: Key Path Expressions as Functions](https://github.com/apple/swift-evolution/blob/master/proposals/0249-key-path-literal-function-expressions.md)
+
+### 기본값 설정 가능해진 커스텀 Subscripts , Subscripts With Default Arguments
+이제 커스텀 서브스크립트(Subscripts)의 전달인자(Argument)에 기본 값을 설정할 수 있게 되었습니다. 아래와 같은 곱셈을 위한 서브스크립트에서,
+```swift
+struct Multiplier {
+  subscript(x: Int, y: Int = 1) -> Int {
+    x * y
+  }
+}
+
+let multiplier = Multiplier()
+```
+이번 개선으로 전달하지 않은 매개변수(Parameter)는 기본값으로 처리되므로, 아래와 같이 다양한 서브스크립드의 사용이 가능합니다.
+```swift
+multiplier[2, 3]
+multiplier[4]
+```
+> Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-6118: Mechanism to hand through #file/#line in subscripts](https://bugs.swift.org/browse/SR-6118)
 
 ## 주요 버그 개선 사항, Major Bug Fixes
+
 
 ### , Lazy Filters are Called in Order
 
