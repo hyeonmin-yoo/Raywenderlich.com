@@ -1,19 +1,18 @@
-> *This article/tutoral is permitted translation in Korean language by raywenderlich.com*
+*This article/tutoral is permitted translation in Korean language by raywenderlich.com*
 
-> *이 글/튜토리얼은 raywenderlich.com의 허가를 받고 번역하였습니다.*
+*이 글/튜토리얼은 raywenderlich.com의 허가를 받고 번역하였습니다.*
 
-> *전문 번역가가 아니므로 다소 오번역이 있을 수 있음을 알려드립니다.*
+*전문 번역가가 아니므로 다소 오번역이 있을 수 있음을 알려드립니다.*
+
+-----
 
 # Swift 5.2 버전에서 달라진 것들
 
-
 [What’s New in Swift 5.2](https://www.raywenderlich.com/9224115-what-s-new-in-swift-5-2) by [Bill Morefiled](https://www.raywenderlich.com/u/bmorefield)
-
 
 * **Version**:  Swift 5, iOS 13, Xcode 11
 * **Level**: Intermediate
 * [**Download Materials**](https://koenig-media.raywenderlich.com/uploads/2020/04/new-swift52-1.zip)
-
 
 Swift 5.2는 Xcode 11.4이 판올림 됨에 따라 이용가능하게 되었습니다. 이 글은 스위프트 최신 버전에서 보게 될 변경사항 혹은 개선사항에 대해서 대략적으로 설명합니다.
 전반적으로 Swift 5.2는 작은 판올림 버전(Minor release)로서 Swift 개발자의 작업에 도움이되는 많은 변경사항과 약간의 개선사항이 있습니다. 이번 판올림에서의 변경/개선 사항은 아래와 같습니다.
