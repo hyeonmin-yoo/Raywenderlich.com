@@ -263,7 +263,7 @@ func generatePointer() {
 ```swift
 warning: initialization of 'UnsafePointer<Int8>' results in a dangling pointer<int8>
 ```
-> 거의 모든 경우에 허상 포인터는 에러를 일으킵니다. 향후 버전에서는 단지 경고를 표시하는데에서 더 나아가 포인터가 올바르게 작동할 가능성도 있습니다. 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-2790: Reject UnsafePointer initialization via implicit pointer conversion](https://bugs.swift.org/browse/SR-2790)
+> 거의 모든 경우에 허상 포인터는 에러를 일으킵니다. 향후 버전에서는 단지 경고를 표시하는데에서 나아가 포인터가 올바르게 작동할 가능성도 있습니다. 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-2790: Reject UnsafePointer initialization via implicit pointer conversion](https://bugs.swift.org/browse/SR-2790)
 
 ### , Overridden Methods Can’t Use Incorrect Generics
 
