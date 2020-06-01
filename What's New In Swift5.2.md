@@ -300,7 +300,7 @@ extension Foo where Self: Bar {
 
 > 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-11298: Writable property declaration in a conditional-conforming protocol extension has incorrect mutability](https://bugs.swift.org/browse/SR-11298)
 
-### 함수의 분간을 어렵게 하는(같은 함수명) 전달인자명 대신에 `as`문법, Disambiguate Functions with Named Parameters
+### 함수의 분간을 어렵게 하는 혹은 같은 전달인자명 대신에 `as`문법, Disambiguate Functions with Named Parameters
 
 읽기 힘든, 차이를 알아채기 어려운 전달인자의 이름(Argument Labels) 대신에 `as` 연산자를 사용할수 있게 되었습니다. 이전에는, 이런 애매모호함을 없애기 위해 전달인자의 이름을 아예 사용하지 않는 방법 뿐이었습니다.
 
