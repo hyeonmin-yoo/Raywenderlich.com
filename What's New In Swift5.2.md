@@ -342,7 +342,7 @@ typealias Magic<T> = T
 
 Swift 5.2 업데이트가 Major update는 아니지만 변경되거나 추가된 사항이 많습니다. 많은 개발자들이 개선사항들을 통해 더 나은 진단, 테스트, 에러 메세지를 경험할수 있습니다. 특히, 머신러닝 프로젝트에 관계된 개발자들은 새로 추가된 타입과 Key-Path 기능을 통해 원활한 작업을 할수 있을 것입니다. 또한, 개선된 커스텀 콜렉션(Custom Collections)은 개발자들이 기본 서브스크립트 타입(Default Subscript Types)을 추가하는데 도움을 줄 것입니다.
 
-스위프트 개선 프로젝트(Swift Evolution process)에 대해서는 알아보고 싶은신 분은 아래의 링크를 참고 하싶시오.
+스위프트 개선 프로젝트(Swift Evolution process)에 대해서는 알아보고 싶은신 분은 아래의 링크를 참고 하십시오.
 * [GitHub change log for Swift](https://github.com/apple/swift/blob/master/CHANGELOG.md) 이 문서는 Swift 업데이트마다 간단한 변경사항에 대한 요약을 제공합니다.
 * [GitHub listing of Swift Evolution proposals](https://github.com/apple/swift-evolution/tree/master/proposals) 이 문서는 GitHub 페이지를 통해 개선제안사항(Proposal)을 볼 수 있습니다. 이 개선제안사항(들)을 통해 (간단한 요약만으로는 알수 없는) 각 변경/개선 사항에 대한 자세한 이유와 개념을 알수 있습니다.
 * [Swift.org bugs and issues dashboard](https://bugs.swift.org/secure/Dashboard.jspa) 이 사이트를 통해서 알려진 Swift 버그와 이슈에 대한 상세한 묘사, 토론, 활동을 볼 수 있습니다.
