@@ -280,8 +280,60 @@ class Derived: Base {
 ```
 > 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-4206: Override checking does not properly enforce requirements](https://bugs.swift.org/browse/SR-4206)
 
-### , Class-Constrained Protocol Extensions
+### 클래스로 제약된 포로토콜 확장에서의 버그, Class-Constrained Protocol Extensions
+아래 코드에서 `Foo` 포로토콜은 클래스 제약(Class Constraint)을 강제하지 않습니다만, 컴파일러는 `Self: Bar`제약으로 인해 `Foo`에 제약이 있는 것처럼 유추했고, 이로인해 `Foo`의 확장에서 `var anotherProperty`의 'setter'가 변경되지 않는 문제가 있었습니다. Swift 5.2에서는 정상적으로 작동합니다.
 
-### , Disambiguate Functions with Named Parameters
+```swift
+protocol Foo {}
+
+class Bar: Foo {
+  var someProperty: Int = 0
+}
+
+extension Foo where Self: Bar {
+  var anotherProperty: Int {
+    get { return someProperty }
+    set { someProperty = newValue }
+  }
+}
+```
+
+> 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-11298: Writable property declaration in a conditional-conforming protocol extension has incorrect mutability](https://bugs.swift.org/browse/SR-11298)
+
+### 함수들의 분간을 어렵게 하는 전달인자명 대신에 `as`문법, Disambiguate Functions with Named Parameters
+
+읽기 힘든, 차이를 알아채기 어려운 전달인자의 이름(Argument Labels) 대신에 `as` 연산자를 사용할수 있게 되었습니다. 이전에는, 이런 애매모호함을 없애기 위해 전달인자의 이름을 아예 사용하지 않는 방법 뿐이었습니다.
+
+```swift
+func print(x: Int) { print("Int \(x)") }
+func print(x: UInt) { print("UInt \(x)") }
+```
+
+이제 `as`를 사용하는 문법을 이용함으로서 아래와 같이 작은 차이를 더 쉽게 인식할수 있게 되었습니다.
+
+```swift
+(print as (Int) -> Void)(5) // Prints Int 5
+(print as (UInt) -> Void)(5) // Prints UInt 5
+```
+
+하지만 이 문법을 용하는데 있어 주의할 점이 있습니다. `as` 연산자를 사용하는 경우에는, 더 이상 `typealias`가 참조하는 함수의 전달인자명을 사용할수 없습니다.
+
+```swift
+typealias Magic<T> = T
+(print as Magic)(x: 5)
+```
+
+위의 코드는 아래와 같은 컴파일러 에러를 일으키게 됩니다.
+
+`Extraneous argument label 'x:' in call`
+
+위의 에러를 해결하기 위해서는 반드시 전달인자의 이름을 제거해야 합니다. 아래의 코드는 정상적으로 `Int 5`를 출력할 것입니다.
+
+```swift
+(print as Magic)(5)
+```
+
+> 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-11429: Don’t look through CoerceExprs in markDirectCallee](https://bugs.swift.org/browse/SR-11429)
+
 
 ##  , Where to Go From Here
