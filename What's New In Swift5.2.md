@@ -14,8 +14,8 @@
 * **Level**: Intermediate
 * [**Download Materials**](https://koenig-media.raywenderlich.com/uploads/2020/04/new-swift52-1.zip)
 
-Swift 5.2는 Xcode 11.4이 판올림 됨에 따라 이용가능하게 되었습니다. 이 글은 스위프트 최신 버전에서 보게 될 변경사항 혹은 개선사항에 대해서 대략적으로 설명합니다.
-전반적으로 Swift 5.2는 작은 판올림 버전(Minor release)로서 Swift 개발자의 작업에 도움이되는 많은 변경사항과 약간의 개선사항이 있습니다. 이번 판올림에서의 변경/개선 사항은 아래와 같습니다.
+Swift 5.2는 Xcode 11.4이 업데이트 됨에 따라 이용가능하게 되었습니다. 이 글은 스위프트 최신 버전에서 보게 될 변경사항 혹은 개선사항에 대해서 대략적으로 설명합니다.
+전반적으로 Swift 5.2는 Minor release로서 Swift 개발자의 작업에 도움이되는 많은 변경사항과 약간의 개선사항이 있습니다. 이번 업데이트에서의 주요한 변경/개선 사항은 아래와 같습니다.
 
 * 보다 유용한 에러 메세지 (Error message)를 통한 더 나은 에러 진단, 특히 SwiftUI
 * 특정 작업을 단순화하는 새로운 기능
@@ -336,4 +336,8 @@ typealias Magic<T> = T
 > 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-11429: Don’t look through CoerceExprs in markDirectCallee](https://bugs.swift.org/browse/SR-11429)
 
 
-##  , Where to Go From Here
+## 끝으로... , Where to Go From Here
+
+아직 튜도리얼 자료를 다운받지 않으신 분들은 이글의 상단에서 다운로드 버튼을 통해 더 많은 Swift 5.2 개선/변경 사항을 확인 할 수 있습니다.
+
+Swift 5.2 업데이트가 Major update는 아니지만 변경되거나 추가된 사항이 많습니다. 많은 개발자들이 개선사항들을 통해 더 나은 진단, 테스트, 에러 메세지를 경험할수 있습니다. 특히, 머신러닝 프로젝트에 관계된 개발자들은 새로 추가된 타입과 Key-Path 기능을 통해 원활한 작업을 할수 있을 것입니다. 또한, 개선된 커스텀 콜렉션(Custom Collections)은 개발자들이 기본 서브스크립트 타입(Default Subscript Types)을 추가하는데 도움을 줄 것입니다.
