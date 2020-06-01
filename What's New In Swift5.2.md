@@ -251,7 +251,18 @@ func generatePointer() {
 
 > 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-2189: Nested function with local default value crashes](https://bugs.swift.org/browse/SR-2189)
 
-### , Warning When Passing Dangling Pointers
+### 허상 포인터(Dangling Pointers) 사용 시에 경고 메세지, Warning When Passing Dangling Pointers
+이제, 유효한 객체를 가리키지 않는 포인터 전달인자(Pointer Argument)를 사용할 때, 컴파일러는 경고를 표시합니다.
+```swift
+func generatePointer() {
+  var number: Int8 = 0
+  let pointer = UnsafePointer(&number)
+}
+```
+경고 메세지의 내용은...
+```swift
+warning: initialization of 'UnsafePointer<Int8>' results in a dangling pointer<int8>
+```
 
 ### , Overridden Methods Can’t Use Incorrect Generics
 
