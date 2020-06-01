@@ -1,8 +1,8 @@
-*This article/tutoral is permitted translation in Korean language by raywenderlich.com*
+- *This article/tutoral is **permitted translation in Korean language by raywenderlich.com***
 
-*이 글/튜토리얼은 raywenderlich.com의 **허가를 받고 번역**하였습니다.*
+- *이 글/튜토리얼은 raywenderlich.com의 **허가를 받고 번역**하였습니다.*
 
-*전문 번역가의 번역이 아니며 **다소의 오역/의역 혹은 과감한 생략**이 있을 수 있음을 알려드립니다.*
+- *전문 번역가의 번역이 아니며 **다소의 오역/의역 혹은 과감한 생략**이 있을 수 있음을 알려드립니다.*
 
 -----
 
