@@ -265,7 +265,20 @@ warning: initialization of 'UnsafePointer<Int8>' results in a dangling pointer<i
 ```
 > 거의 모든 경우에 허상 포인터는 에러를 일으킵니다. 향후 버전에서는 단지 경고를 표시하는데에서 나아가 포인터가 올바르게 작동할 가능성도 있습니다. 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-2790: Reject UnsafePointer initialization via implicit pointer conversion](https://bugs.swift.org/browse/SR-2790)
 
-### , Overridden Methods Can’t Use Incorrect Generics
+### 잘 못된 형태로 사용가능 하던 오버라이딩 된 Generic 수정, Overridden Methods Can’t Use Incorrect Generics
+상위 클래스(Class)의 함수를 오버라이드(Override) 할 때, 아래에서 보는바와 같이 호환되지 않는(잘못 된) 제네릭(Generics)의 형태로 사용 가능했습니다만, Swift 5.2 이전 버전부터 더 이상 컴파일 되지 않으며 에러가 발생하도록 수정되었습니다.
+```swift
+protocol P { }
+
+class Base {
+  func doWork<T>(input: T) { }
+}
+
+class Derived: Base {
+  override func doWork <T: P>(input: T) { }
+}
+```
+> 이 수정 사항에 대해서는 Swift.org에서 더 자세한 내용을 볼 수 있습니다. [SR-4206: Override checking does not properly enforce requirements](https://bugs.swift.org/browse/SR-4206)
 
 ### , Class-Constrained Protocol Extensions
 
