@@ -347,4 +347,4 @@ Swift 5.2 업데이트가 Major update는 아니지만 변경되거나 추가된
 * [GitHub listing of Swift Evolution proposals](https://github.com/apple/swift-evolution/tree/master/proposals) 이 문서는 GitHub 페이지를 통해 개선제안사항(Proposal)을 볼 수 있습니다. 이 개선제안사항(들)을 통해 (간단한 요약만으로는 알수 없는) 각 변경/개선 사항에 대한 자세한 이유와 개념을 알수 있습니다.
 * [Swift.org bugs and issues dashboard](https://bugs.swift.org/secure/Dashboard.jspa) 이 사이트를 통해서 알려진 Swift 버그와 이슈에 대한 상세한 묘사, 토론, 활동을 볼 수 있습니다.
 
-> 이 글에 대한 토론, 댓글 보거나 작성하실 분은 [클릭](https://forums.raywenderlich.com/t/what-s-new-in-swift-5-2-raywenderlich-com/105173)하십시오.
+> 이 글에 대한 토론/댓글을 보거나 작성하실 분은 [클릭](https://forums.raywenderlich.com/t/what-s-new-in-swift-5-2-raywenderlich-com/105173)하십시오.
