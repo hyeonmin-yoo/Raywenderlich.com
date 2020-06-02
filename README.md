@@ -10,5 +10,5 @@
 
 
 ## 목록, Contents
-* [What's New In Swift5.2](https://www.raywenderlich.com/9224115-what-s-new-in-swift-5-2)
+* [What's New In Swift5.2](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/What's%20New%20In%20Swift5.2.md)
 * [SwiftUI Tutorial for iOS: Creating Charts](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts)
