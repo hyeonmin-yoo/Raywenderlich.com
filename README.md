@@ -1,5 +1,5 @@
 # Raywenderlich.com 튜토리얼
-Raywenderlich.com의 유용한 튜토리얼을 한국어 번역입니다.
+[Raywenderlich.com](https://www.raywenderlich.com/)의 유용한 튜토리얼의 한국어 번역입니다.
 
 ## 시작하기 전에...
 - *This article/tutoral is **permitted translation in Korean language by raywenderlich.com***
@@ -10,5 +10,5 @@ Raywenderlich.com의 유용한 튜토리얼을 한국어 번역입니다.
 
 
 ## 목록, Contents
-* What's New In Swift5.2.md
-* SwiftUI Tutorial for iOS: Creating Charts
+* [What's New In Swift5.2](https://www.raywenderlich.com/9224115-what-s-new-in-swift-5-2)
+* [SwiftUI Tutorial for iOS: Creating Charts](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts)
