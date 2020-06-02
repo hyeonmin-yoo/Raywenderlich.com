@@ -27,6 +27,7 @@
 
 ### 차트 vs. 그래프, Charts vs. Graphs
 
+<img src="https://koenig-media.raywenderlich.com/uploads/2019/11/hypercycloid.png" width="394" height="363">
 
 ## 끝으로... , Where to Go From Here
 
