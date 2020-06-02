@@ -8,11 +8,21 @@
 
 # Swift 5.2 버전에서 달라진 것들
 
-[What’s New in Swift 5.2](https://www.raywenderlich.com/9224115-what-s-new-in-swift-5-2) by [Bill Morefiled](https://www.raywenderlich.com/u/bmorefield)
+[SwiftUI Tutorial for iOS: Creating Charts](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts) by [Bill Morefiled](https://www.raywenderlich.com/u/bmorefield)
 
 * **Version**:  Swift 5, iOS 13, Xcode 11
 * **Level**: Intermediate
-* [**Download Materials**](https://koenig-media.raywenderlich.com/uploads/2020/04/new-swift52-1.zip)
+* [**Download Materials**](https://koenig-media.raywenderlich.com/uploads/2019/12/WeatherChart.zip)
+
+차트는 유저에게 데이터를 보여주는 훌륭한 방법입니다. 상호연관된 수 많은 정보를 차트를 통해 이해할 수 있습니다. 현재의 관심을 끄는 트렌드를 보여주고, 원인과 이유를 분명히 하며, 시각화된 정보를 통해 유저가 쉽게 이해하도록 돕습니다.
+
+이 SwiftUI 튜토리얼에서는, 여러분이 앱 데이터의 시각화를 위하여 어떻게 다양한 커스텀 차트를(Custom Charts) 만드는지 배웁니다.
+
+아직 SwiftUI가 차트를 만드는 라이브러리(Native Chart Livrary)를 제공하지는 않지만, 뛰어난 그래픽 관련 라이브러리를 사용해 커스텀 차트를 만들수 있습니다. 이 튜토리얼에서 여러분은, *Great Smoky산 국립공원* 근처의 몇몇 기상관측소를 위해 기록적인 날씨 데이터를 이용하여 차트를 생성하고 앱에 추가하게 됩니다.
+
+## 왜 차트를 사용하는가?, Why Use a Chart?
+
+
 
 ## 끝으로... , Where to Go From Here
 
