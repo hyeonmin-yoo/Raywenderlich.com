@@ -1,6 +1,7 @@
 # Raywenderlich.com 튜토리얼
 Raywenderlich.com의 유용한 튜토리얼을 한국어 번역입니다.
 
+## 시작하기 전에...
 - *This article/tutoral is **permitted translation in Korean language by raywenderlich.com***
 
 - *이 글/튜토리얼은 raywenderlich.com의 **허가를 받고 번역**하였습니다.*
