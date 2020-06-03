@@ -27,7 +27,42 @@
 
 ### 차트 vs. 그래프, Charts vs. Graphs
 
-<img src="https://koenig-media.raywenderlich.com/uploads/2019/11/hypercycloid.png" width="394" height="363">
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/hypercycloid.png" width="394" height="363">
+</p>
+
+차트는 이야기를 해야합니다. 보는 사람으로이 해당 테이터를 이해하기 쉽고, 해석하기 쉽게 해야합니다. 즉, 모든 차트는 그래프이지만, 모든 그래프가 차트는 아닙니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/Screenshot-2019-11-10-18.23.29.png" class="center" width="483">
+</p>
+
+## 시작하며..., Getting Started
+
+이 페이지의 시작 부분에 위치한 다운로드 링크를 통해 이 튜토리얼에 필요한 자료(Xcode project)를 다운로드 할수 있습니다. 빌드(Build)-런(Run)을 통해 테스트 해 보시길 바랍니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/station-starter-1.png" width="231">
+</p>
+
+이 앱은 기상관측소 다섯 곳의 데이터를 보여줍니다.
+
+* Cherokee, NC와 Gatlinburg, TN: 이 두 도시는 공원을 지나는 *메인* 도로(main road)에 위치해 있습니다.
+* Newfound Gap: *메인* 도로가 지나는 
+* Townsend 5 S: 공원의 남서쪽 부분
+* Mount LeConte: 공원 내에서 산의 가장 높은 곳들 중 한 곳
+
+이 자료들은 각 지점 매일 매일의 강우량, 강설량, 온도 변화를 포함하고 있습니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/leconte-starter.png" width="231">
+</p>
+
+각 지점을 탭하면 해당 지점에 대한 위치와 날씨 정보(매일의 온도 변화, 한달 동안의 강우량, 매일의 강설량)를 보여줍니다. 
+
+강우량 데이터를 바 차트(bar chart)에 추가하는 작업부터 시작하겠습니다.
+
+## Refactoring for Charts
 
 ## 끝으로... , Where to Go From Here
 
