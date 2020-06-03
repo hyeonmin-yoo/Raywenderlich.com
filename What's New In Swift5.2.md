@@ -61,7 +61,7 @@ Xcode 11.4 이전의 오류 메시지는 다음과 같았습니다.
 <p align="center">
   <img src="https://koenig-media.raywenderlich.com/uploads/2020/03/unclear-sui.png" width="500">
 </p>
-<p style="text-align: center;">
+<p align="center">
   <i>이전 버전의 Swift의 경우에는 이해하기 조금 애매모호한 경우가 있었습니다</i>
 </p>
 
