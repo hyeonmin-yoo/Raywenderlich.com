@@ -58,8 +58,9 @@ struct SquareView : View {
 ```
 Xcode 11.4 이전의 오류 메시지는 다음과 같았습니다.
 
-
-![alt text](https://koenig-media.raywenderlich.com/uploads/2020/03/unclear-sui.png)
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/03/unclear-sui.png" width="500">
+</p>
 *이전 버전의 Swift의 경우에는 이해하기 조금 애매모호한 경우가 있었습니다*
 
 
@@ -67,7 +68,6 @@ Xcode 11.4 이전의 오류 메시지는 다음과 같았습니다.
 SwiftUI로 작업 할 때 이와 같은 분명하지 않은 오류 메시지가 표시되는 것이 일반적이었습니다. 이로 인해 SwiftUI 사용법을 배우기가 훨씬 어려웠고, 단순한 오타 조차도 실제 오류 찾아내기 위해서는 전체 코드를 장황하게 다시 읽어들이고, 삭제하고 주석 처리하는 과정이 반복되었습니다. 코드 블록을 다시보십시오. 실제 문제를 파악할 수 있습니까? 사실, Double을 CGFloat로 변환하는 것과는 아무런 관련이 없는 에러 메세지 입니다.
 
 이제 starter 폴더에서 swiftui.playground 파일를 여십시오. 컴파일러는 훨씬 유용하고 실행 가능한 오류 메시지를 제공합니다.
-
 
 ￼![alt text](https://koenig-media.raywenderlich.com/uploads/2020/03/better-sui.png)
 *Swift 5.2에서의 개선된 에러메세지*
