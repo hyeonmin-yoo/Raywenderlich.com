@@ -64,6 +64,13 @@
 
 ## Refactoring for Charts
 
+바 차트에서 바는 각 데이터 요소를 표현합니다. 각 바의 길이는 수치적인 값을 나타내며 필요에 따라 수직적으로, 수평적으로 표현됩니다.
+
+프로젝트 네비게이터에서 **Tabs** 그룹안의 **PrecipitationTab.swift** 파일을 여십시오. 55번째 라인에서 SwiftUI ```List()```를 볼수 있습니다. ```List()```는 0부터 11까지 반복하며 해당 연월과 총 강우량을 나타내고 표시합니다. ```List()``` 내부의 ```monthAbbreviationFromInt```, ```sumPrecipitation```함수는 각 달의 이름과 강우량 합계를 계산합니다.
+
+**Chart**그룹에서 
+
+
 ## 끝으로... , Where to Go From Here
 
 아직 튜도리얼 자료를 다운받지 않으신 분들은 이글의 상단에서 다운로드 버튼을 통해 더 많은 Swift 5.2 개선/변경 사항을 확인 할 수 있습니다.
