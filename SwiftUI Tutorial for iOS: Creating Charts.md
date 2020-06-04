@@ -68,8 +68,52 @@
 
 프로젝트 네비게이터에서 **Tabs** 그룹안의 **PrecipitationTab.swift** 파일을 여십시오. 55번째 라인에서 SwiftUI ```List()```를 볼수 있습니다. ```List()```는 0부터 11까지 반복하며 해당 연월과 총 강우량을 나타내고 표시합니다. ```List()``` 내부의 ```monthAbbreviationFromInt```, ```sumPrecipitation```함수는 각 달의 이름과 강우량 합계를 계산합니다.
 
-**Chart**그룹에서 
+**Chart**그룹에서 우클릭하여 새 파일(**New File**)을 만들겠습니다. User Interface 섹션에서 SwiftUI View를 선택해 **Next**를 누룹니다. 새로운 뷰의 파일명은 **PrecipitationChart**로 하겠습니다.
 
+새로 만들어 지는 파일의 그룹이 **Chart**인지 확인한 후 **Creat** 버튼을 클릭 합니다. 이제 새로운 파일을 열어보면 Xocde의 우측에 Canvas가 보일것 입니다. 만약 보이지 않는 다면, 메뉴에서 **Editor ▸ Canvas**를 활성화 하십시오.
+
+아래의 코드를 ```PrecipitationChart``` 구조체(Struct) 위에 추가합니다.
+```swift
+var measurements: [DayInfo]
+```
+이 변수의 안의 측정값(measurements)을 차트에 전달할 것입니다.이제 ```PrecipitationChart_Previews```를 업데이트하여 측정값을 프리뷰(preview)에 표시해 보도록 하겠습니다. 이 번에는 Mt. LeConte에서의 측정값을 넘겨주도록 합니다.
+```swift
+PrecipitationChart(measurements: WeatherInformation()!.stations[2].measurements)
+```
+
+먼저, 기존 함수를 현재의 뷰(PrecipitationChart) 복사합니다. 아래의 두 헬퍼(helper) 함수를 ```measurements```아래에 추가합니다.
+```swift
+func sumPrecipitation(_ month: Int) -> Double {
+  self.measurements.filter {
+    Calendar.current.component(.month, from: $0.date) == month + 1
+  }.reduce(0, { $0 + $1.precipitation })
+}
+
+func monthAbbreviationFromInt(_ month: Int) -> String {
+  let ma = Calendar.current.shortMonthSymbols
+  return ma[month]
+}
+```
+```sumPrecipitation(_:)```는 ```filter``` 고차함수(higher-order function)를 사용하여 오직 함수에 전달 된 월의 측정치만 가져옵니다. 1이 아닌 0에서 시작하므로 ```+ 1```로 조정해 줍니다. ```reduce```를 통해 강 강우량 데이터 값의 합을 구합니다.
+
+```monthAbbreviationFromInt(_:)```함수는 전달인자```(_ month: Int)```와 일치하는 각 달의 이름(예: 1월 -> Jan)을 찾아 ```return```합니다.
+
+다음으로 ```body```부분을 업데이트 하겠습니다.
+```swift
+List(0..<12) { month in
+  Text("\(self.monthAbbreviationFromInt(month)): " +
+    "\(self.sumPrecipitation(month))\"")
+}
+```
+
+**PrecipitationTab.swift**를 열어 더 이상 필요치 않은 ```sumPrecipitation(_:)```와 ```monthAbbreviationFromInt(_:)```함수를 삭제하겠습니다. ```body``` 내부의 ```List```를  하여 새로운 뷰를 호출하기 위해 아래와 같이 교체하겠습니다.
+```swift
+PrecipitationChart(measurements: station.measurements)
+```
+
+> 앱을 실행(run)하여 결과를 보기 위해서는 시뮬레이터 화면에서 하나의 기상관측소를 선택한 후 강우량 탭(Precipitation tab)으로 설정해야 하는 부분에 주의하십시오.
+
+## , Raising the SwiftUI Bar
 
 ## 끝으로... , Where to Go From Here
 
