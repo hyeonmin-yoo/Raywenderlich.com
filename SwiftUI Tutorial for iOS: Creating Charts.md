@@ -113,7 +113,43 @@ PrecipitationChart(measurements: station.measurements)
 
 > 앱을 실행(run)하여 결과를 보기 위해서는 시뮬레이터 화면에서 하나의 기상관측소를 선택한 후 강우량 탭(Precipitation tab)으로 설정해야 하는 부분에 주의하십시오.
 
-## , Raising the SwiftUI Bar
+## SwiftUI 바(bar) 올리기 , Raising the SwiftUI Bar
+
+SwiftUI는 몇가지 형태의 뷰(views)를 제공합니다. 바 차트는 ```Rectangle``` 형태호 만드는 것이 적당할 것입니다. ***PrecipitationChart.swift*** 팔일을 열고 ``` body``` 부분을 아래와 같이 바꿉니다.
+
+```swift
+// 1
+HStack {
+  // 2
+  ForEach(0..<12) { month in
+    // 3
+    VStack {
+      // 4
+      Spacer()
+      // 5
+      Rectangle()
+        .fill(Color.green)
+        .frame(width: 20, height: CGFloat(self.sumPrecipitation(month)) * 15.0)
+      // 6
+      Text("\(self.monthAbbreviationFromInt(month))")
+        .font(.footnote)
+        .frame(height: 20)
+    }
+  }
+}
+````
+
+코드에 관한 설명은 아래와 같습니다.
+1. 수직 바를 만들기 위해서는 ```HStack```을 사용하여 하위 뷰(child views)를 수평적으로 배열할 수 있습니다.
+1. ```ForEach```문을 12 반복하여 하위 코드를  실행합니다.
+1. 하나 하나의 바는 차트에 수직으로 쌓이게 하기 위해 ```VStack```을 사용합니다.
+1. 각 뷰의 사이즈는 명확히 수치를 입력해야 합니다. 여기서 ```Spacer```는 남은 여백을 채워 줍니다. 사실 상 이 코드는, ```Spacer```를 ```VStack```의 가장 위로 지정하는 것입니다.
+1. 기초적인 SwiftUI 형태인 ```Rectangle```을 사용합니다. 이름 그대로 사각형 형태이며 ```frame(_:, _:)```함수를 통해 배치 하고, fill()함수를 통하여 채울 색을 지정합니다. ```frame(_:, _:)```의 전달인자는 폭(width)과 높이(height)로 상수(constant)로 설정하며 15가 곱해져 각 달의 총 강우량을 나타낼 것입니다. 참고로, 1인치(inch)의 강우량 수치는 20 포인트(points) 폭, 15 포인트 높이로 표시 됩니다. 예를 들어, 어떤 달에 7인치의 비가 왔다면 강우량 바는 20 포인트의 폭과 105 포인트 높이로 표시됩니다.
+1. 각 바에 해당 월을 표시해 주기 위해(라벨) 스택의 가장 마지막 부분에 ```text```뷰를 사용하며 줄임말 형태로(i.e. January -> Jan) 표시하기 위해 ```.footnote```를 ```font()```에 ```frame(_:)```에는 고정(static)값 높이를 지정합니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/initial-bars.png" width="231">
+</p>
 
 ## 끝으로... , Where to Go From Here
 
