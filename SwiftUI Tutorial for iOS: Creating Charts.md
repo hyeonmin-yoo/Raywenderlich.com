@@ -208,6 +208,46 @@ SwiftUI는 뷰를 읽는 순서대로 렌더링 합니다. 이 말은, 강우량
 ## 가로막대-차트 만들기
 [Building a Horizontal Bar Chart](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-007)
 
+The Smoky Mountains에는 미국 동부에서 가장 고도가 높은 몇 곳이 있습니다. 그러나 이 높은 고도를 제외하면 예상보다 강우량이 적습니다.
+
+눈이 부족하다는 것은 강우량 차트와 같이 월별 그룹화를 의미하며, 연초와 연말에 탁 튀어 오르고 연중에는 아무것도 표시되지 않을 것입니다. 그러므로 강우량 그래프는 강우량 기록이 있는 날만을 보여주는 수평막대-차트로 그려질 것입니다.
+
+Xcode의 **Charts**그룹에서 우클릭하여 **New File**을 선택합니다. 다시 **SwiftUI VIew**를 선택하고 **Next**를 클릭합니다. 새로운 파일의 이름은 **SnowfallChart**로 합니다. 파일이 **Charts**그룹에 위치하는지 확인하고 **Create**를 클릭하여 만들어진 파일을 열겠습니다.
+
+아래의 코드를 struct의 위에 추가하여 강우량 데이터를 이 뷰에 전달합니다.
+
+```swift
+var measurements: [DayInfo]
+```
+
+가장 빈번한 강우일과 가장 큰 강우량 합계를 가진 Mount LeConte 관측소 데이터를 사용해 프리뷰를 아래와 같이 바꾸겠습니다.
+
+```swift
+SnowfallChart(measurements: WeatherInformation()!.stations[2].measurements)
+```
+
+다음으로, ```body```를 아래와 같이 바꾸겠습니다.
+
+```swift
+// 1
+List(measurements.filter { $0.snowfall > 0.0 }) { measurement in
+  HStack {
+    // 2
+    Text("\(measurement.dateString)")
+      .frame(width: 100, alignment: .trailing)
+    // 3
+    Rectangle()
+      .fill(Color.blue)
+      .frame(width: CGFloat(measurement.snowfall * 10.0), height: 5.0)
+    // 4
+    Spacer()
+    Text("\(measurement.snowfall.stringToOneDecimal)\"")
+  }
+}
+```
+위 코드의 분석은 아래와 같습니다.
+
+1. 
 
 
 ## 끝으로...
