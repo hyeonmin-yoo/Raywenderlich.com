@@ -176,6 +176,14 @@ SwiftUI는 뷰를 읽는 순서대로 렌더링 합니다. 이 말은, 강우량
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/bar-chart-label-231x500.png" width="231">
 </p>
 
+빌드와 런을 통해 새로 추가한 text view가 잘 보여지는지 확인해 보십시오. 그 다음, Cherokee, NC 관측소로 이동하여 강수량 탭(precipitation tab)으로 이동하면 재미있는 버그(bug)가 발견될 것입니다. 2018년 7월의 강우량은 아주 소량이기 때문에 바가 짧게 표시 되며 텍스트(강우량 수치)가 제대로 표시되지 않습니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/precip-bar-error-231x500.png" width="231">
+</p>
+
+이 
+
 ## 끝으로... , Where to Go From Here
 
 스위프트 개선 프로젝트(Swift Evolution process)에 대해서는 알아보고 싶은신 분은 아래의 링크를 참고 하십시오.
