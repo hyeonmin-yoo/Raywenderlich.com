@@ -145,10 +145,35 @@ HStack {
 1. 하나 하나의 바는 차트에 수직으로 쌓이게 하기 위해 ```VStack```을 사용합니다.
 1. 각 뷰의 사이즈는 명확히 수치를 입력해야 합니다. 여기서 ```Spacer```는 남은 여백을 채워 줍니다. 사실 상 이 코드는, ```Spacer```를 ```VStack```의 가장 위로 지정하는 것입니다.
 1. 기초적인 SwiftUI 형태인 ```Rectangle```을 사용합니다. 이름 그대로 사각형 형태이며 ```frame(_:, _:)```함수를 통해 배치 하고, fill()함수를 통하여 채울 색을 지정합니다. ```frame(_:, _:)```의 전달인자는 폭(width)과 높이(height)로 상수(constant)로 설정하며 15가 곱해져 각 달의 총 강우량을 나타낼 것입니다. 참고로, 1인치(inch)의 강우량 수치는 20 포인트(points) 폭, 15 포인트 높이로 표시 됩니다. 예를 들어, 어떤 달에 7인치의 비가 왔다면 강우량 바는 20 포인트의 폭과 105 포인트 높이로 표시됩니다.
-1. 각 바에 해당 월을 표시해 주기 위해(라벨) 스택의 가장 마지막 부분에 ```text```뷰를 사용하며 줄임말 형태로(i.e. January -> Jan) 표시하기 위해 ```.footnote```를 ```font()```에 ```frame(_:)```에는 고정(static)값 높이를 지정합니다.
+1. 각 바에 해당 월을 표시해 주기 위해(라벨) 스택의 가장 마지막 부분에 ```text```뷰를 사용하며 축약형으로(i.e. January -> Jan) 표시하기 위해 ```.footnote```를 ```font()```에 ```frame(_:)```에는 고정(static)값 높이를 지정합니다.
 
 <p align="center">
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/initial-bars.png" width="231">
+</p>
+
+## 세부사항 추가하기, Adding a drop more detail
+여기에서는 SwiftUI가 제공하는 기능적 이점들을 알아보며 어떻게 하면 좋은 바 차트를 만들수 있는지 살펴보겠습니다. 외부 ```HStack```은 이 차트에서 동등하게 각 바가 차지하는 공간을 나눕니다. 이러한 기능은 코드를 읽기 쉽게(readablity) 해줍니다. 각 바의 높이는 일년동안의 강우량 총량을 보여줍니다.
+
+그러나, 이 차트는 확실하고 정확하게 강우량 총량을 나타내지는 안습니다. 아래의 코드를 ```body```의 ```Spacer``` 아랫 부분에 추가함으로서 불확실함, 불명확함을 해소할 수 있습니다. 
+
+```swift
+Text("\(self.sumPrecipitation(month).stringToOneDecimal)")
+  .font(.footnote)
+  .rotationEffect(.degrees(-90))
+  .offset(y: 35)
+  .zIndex(1)
+```
+
+각 바에 텍스트뷰(text view)가 추가되었습니다. 이로서 소수 첫번째 자리까지 반올림(rounded to one decimal) 된 한달 총 강우량을 보여줄 수 있게 되었습니다. 사용된 함수는 ```Double```에 확장된 함수(extension method)이며 **DoubleExtension.swift**에서 찾아볼 수 있습니다.
+
+텍스트뷰의 폰트는 x축의 월 라벨(month label)과 동일하며 텍스트는 반시계 방향으로 90도 회전되어 수직바와 평행한 방향으로 보여집니다. 마지막으로 텍스트뷰는 바의 안쪽에 위치하도 아래방향으로 35 포인트 떨어지게(offset) 설정했습니다.
+
+SwiftUI는 뷰를 읽는 순서대로 렌더링 합니다. 이 말은, 강우량 수치는 각 바와 같은 공간을 점유하기에, 그리고 먼저 생성 되었기에 각 바의 아래에 위치하게 된다는 의미입니다.
+
+```zIndex``` 프로퍼티는 디폴트값 0이 아닌, 1이 설정된 이유는 SwiftUI가 ```Text```를 다른 뷰(views)의 최상위에 그리게 하게 위함입니다. 결과적으로, 강수량 수치는 ```zIndex```프로퍼티를 1로 설정함에 의해 각 바위 위에 위치하게 됩니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/bar-chart-label-231x500.png" width="231">
 </p>
 
 ## 끝으로... , Where to Go From Here
