@@ -20,12 +20,15 @@
 
 아직 SwiftUI가 차트를 만드는 라이브러리(Native Chart Livrary)를 제공하지는 않지만, 뛰어난 그래픽 관련 라이브러리를 사용해 커스텀 차트를 만들수 있습니다. 이 튜토리얼에서 여러분은, *Great Smoky산 국립공원* 근처의 몇몇 기상관측소를 위해 기록적인 날씨 데이터를 이용하여 차트를 생성하고 앱에 추가하게 됩니다.
 
-## 왜 차트를 사용하는가?, Why Use a Chart?
+## 왜 차트를 사용하는가?
+Why Use a Chart?
+
 소수의 몇 가지 데이터를 살펴보며 정보를 팔악할 수는 있지만, 끝 없이 긴 숫자를 보는 것은 데이터에서 통찰을 얻기 위한 좋은 방법은 아닙니다. 수 많은 숫자를 보며 어떤 달이 얼마나 따뜻했는지, 어떤 달이 가장 건조했는지를 파악하는 것은 쉽지 않습니다.
 
 대부분의 사람들은 정보가 그래픽으로 표시될 때 더 쉽게 그 정보에 대해서 파악합니다. 차트는 그래픽으로 표현하여 보는 사람에게 정보를 제공해 줍니다.
 
-### 차트 vs. 그래프, Charts vs. Graphs
+### 차트 vs. 그래프
+Charts vs. Graphs
 
 <p align="center">
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/hypercycloid.png" width="394" height="363">
@@ -37,7 +40,8 @@
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/Screenshot-2019-11-10-18.23.29.png" class="center" width="483">
 </p>
 
-## 시작하며..., Getting Started
+## 시작하며...
+Getting Started
 
 이 페이지의 시작 부분에 위치한 다운로드 링크를 통해 이 튜토리얼에 필요한 자료(Xcode project)를 다운로드 할수 있습니다. 빌드(Build)-런(Run)을 통해 테스트 해 보시길 바랍니다.
 
@@ -62,7 +66,8 @@
 
 강우량 데이터를 (세로)막대 차트(bar chart)에 추가하는 작업부터 시작하겠습니다.
 
-## Refactoring for Charts
+## 차트를 만들기 위한 재조정
+Refactoring for Charts
 
 막대 차트에서 막대(bar)는 각 데이터 요소를 표현합니다. 각 막대의 길이는 수치적인 값을 나타내며 필요에 따라 수직적으로, 수평적으로 표현됩니다.
 
@@ -113,7 +118,8 @@ PrecipitationChart(measurements: station.measurements)
 
 > 앱을 실행(run)하여 결과를 보기 위해서는 시뮬레이터 화면에서 하나의 기상관측소를 선택한 후 강우량 탭(Precipitation tab)으로 설정해야 하는 부분에 주의하십시오.
 
-## SwiftUI 막대(bar) 올리기 , Raising the SwiftUI Bar
+## SwiftUI 막대(bar) 올리기
+Raising the SwiftUI Bar
 
 SwiftUI는 몇가지 형태의 뷰(views)를 제공합니다. 바 차트는 ```Rectangle``` 형태호 만드는 것이 적당할 것입니다. ***PrecipitationChart.swift*** 팔일을 열고 ``` body``` 부분을 아래와 같이 바꿉니다.
 
@@ -151,7 +157,9 @@ HStack {
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/initial-bars.png" width="231">
 </p>
 
-## 세부사항 추가하기, Adding a drop more detail
+## 세부사항 추가하기
+Adding a drop more detail
+
 여기에서는 SwiftUI가 제공하는 기능적 이점들을 알아보며 어떻게 하면 좋은 막대 차트를 만들수 있는지 살펴 보겠습니다. 외부 ```HStack```은 이 차트에서 동등하게 각 바가 차지하는 공간을 나눕니다. 이러한 기능은 코드를 읽기 쉽게(readablity) 해줍니다. 각 바의 높이는 일년동안의 강우량 총량을 보여줍니다.
 
 그러나, 이 차트는 확실하고 정확하게 강우량 총량을 나타내지는 않습니다. 아래의 코드를 ```body```의 ```Spacer``` 아랫 부분에 추가함으로서 불확실함, 불명확함을 해소할 수 있습니다. 
@@ -197,11 +205,13 @@ SwiftUI는 뷰를 읽는 순서대로 렌더링 합니다. 이 말은, 강우량
 
 이제 강우량 차트를 완성했으니 다음으로 강설량 데이터를 이용해 가로막대-차트(horizontal bar chart) 만들어 보겠습니다.
 
-## 가로막대-차트 만들기, Building a Horizontal Bar Chart
+## 가로막대-차트 만들기
+Building a Horizontal Bar Chart
 
 
 
-## 끝으로... , Where to Go From Here
+## 끝으로...
+Where to Go From Here
 
 스위프트 개선 프로젝트(Swift Evolution process)에 대해서는 알아보고 싶은신 분은 아래의 링크를 참고 하십시오.
 * []() 이 문서는 Swift 업데이트마다 간단한 변경사항에 대한 요약을 제공합니다.
