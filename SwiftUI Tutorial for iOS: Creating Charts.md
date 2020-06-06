@@ -193,11 +193,11 @@ SwiftUI는 뷰를 읽는 순서대로 렌더링 합니다. 이 말은, 강우량
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/corrected-cherokee-precip.png" width="231">
 </p>
 
-멋지게 리스트를 바차트로 표현했습니다. 이를 통해 유저는 모든 원형(원시) 데이터를 각 달의 강우량의 차이를 선명하게 시각화된 차트로 볼수 있게 되었습니다.
+리스트를 (가로)막대-차트로 표현했습니다. 이를 통해 유저는 모든 원형(원시) 데이터를 각 달의 강우량의 차이를 선명하게 시각화된 차트로 볼수 있게 되었습니다.
 
 이제 강우량 차트를 완성했으니 다음으로 강설량 데이터를 이용해 수평-바-차트(horizontal bar chart) 만들어 보겠습니다.
 
-## 수평-바-차트 만들기, Building a Horizontal Bar Chart
+## 세로막대 차트 만들기, Building a Horizontal Bar Chart
 
 
 
