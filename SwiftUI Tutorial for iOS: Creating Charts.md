@@ -182,7 +182,24 @@ SwiftUI는 뷰를 읽는 순서대로 렌더링 합니다. 이 말은, 강우량
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/precip-bar-error-231x500.png" width="231">
 </p>
 
-이 
+이 버그를 수정하기 위해, offset을 확인하는 코드를 넣어 특정 조건에서는 offset 프로퍼티가 다르게 설정하도록 합니다.
+
+```swift
+.offset(y: self.sumPrecipitation(month) < 2.4 ? 0 : 35)
+```
+만약 한 달 강우량 총량이 2.4인치보다 낮을 경우(바의 높이로는 36포인트)에는 강우량 수치 텍스트가 바위 상단에 위치하도록 합니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/corrected-cherokee-precip.png" width="231">
+</p>
+
+멋지게 리스트를 바차트로 표현했습니다. 이를 통해 유저는 모든 원형(원시) 데이터를 각 달의 강우량의 차이를 선명하게 시각화된 차트로 볼수 있게 되었습니다.
+
+이제 강우량 차트를 완성했으니 다음으로 강설량 데이터를 이용해 수평-바-차트(horizontal bar chart) 만들어 보겠습니다.
+
+## 수평-바-차트 만들기, Building a Horizontal Bar Chart
+
+
 
 ## 끝으로... , Where to Go From Here
 
