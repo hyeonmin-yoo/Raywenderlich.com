@@ -187,7 +187,7 @@ SwiftUI는 뷰를 읽는 순서대로 렌더링 합니다. 이 말은, 강우량
 ```swift
 .offset(y: self.sumPrecipitation(month) < 2.4 ? 0 : 35)
 ```
-만약 한 달 강우량 총량이 2.4인치보다 낮을 경우(막대의 높이로는 36포인트)에는 강우량 수치 텍스트가 바위 상단에 위치하도록 합니다.
+만약 한 달 강우량 총량이 2.4인치보다 낮을 경우(막대의 높이로는 36포인트)에는 강우량 수치 텍스트가 막대의 상단에 위치하도록 합니다.
 
 <p align="center">
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/corrected-cherokee-precip.png" width="231">
