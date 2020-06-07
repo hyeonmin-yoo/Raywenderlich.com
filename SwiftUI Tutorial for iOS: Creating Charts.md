@@ -343,6 +343,17 @@ preview에 아래의 같이 데이터를 제공 하겠습니다.
 TemperatureChart(measurements: WeatherInformation()!.stations[1].measurements)
 ```
 
+이번 차트는 한 관측소의 1년 동안의 가장 높은 온도에서 가장 낮은 온도까지를 시각화하여 보여줘야 합니다. 이를 달성하기 위해 몇 가지 보조 함수(helper functions)를 사용해야 하면 아래와 같은 함수를 ```measurements``` 아래에 작성하도록 하겠습니다.
+
+```swift
+func degreeHeight(_ height: CGFloat, range: Int) -> CGFloat {
+  height / CGFloat(range)
+}
+
+func dayWidth(_ width: CGFloat, count: Int) -> CGFloat {
+  width / CGFloat(count)
+}
+````
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
