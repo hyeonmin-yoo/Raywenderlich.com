@@ -331,6 +331,15 @@ ZStack(alignment: .leading) {
 ## 적외선 열지도 만들기
 [Creating a Heat Map](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-009)
 
+먼저 TemperatureChart라는 이름으로 새로운 SwiftUI 뷰를 **Charts** 그룹에 만들겠습니다. **TemperatureChart.swift**을 열고 ```struct``` 위에 측정값 데이터 변수를 만들겠습니다.
+
+```swift
+var measurements: [DayInfo]
+```
+
+preview에 아래의 
+
+
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
 
