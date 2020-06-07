@@ -267,6 +267,7 @@ SnowfallChart(measurements: station.measurements)
 ## 눈금 추가하기
 [Adding Grid Lines](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-008)
 
+강설량의 
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
