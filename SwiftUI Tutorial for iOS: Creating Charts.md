@@ -247,7 +247,25 @@ List(measurements.filter { $0.snowfall > 0.0 }) { measurement in
 ```
 위 코드의 분석은 아래와 같습니다.
 
-1. 
+1. ```List``` 를 생성하여 각 강설량 측정값을 위한 시작점을 만듭니다.
+1. 각 행(row)은 눈이 내린 날짜와 함께 시작합니다. 자동적으로, 텍스트 뷰(```Text``` view)는 포함된 텍스트 크기에 맞게 크기가 조절되며 너비가 다른 행은 남겨둡니다. 특정한 상수값으로 너비를 지정하면 각 행에서 막대의 수평 위치(horizontal position) 위치는 같은 곳으로 적용됩니다. 정렬은 ```.trailing```으로 지정하며 강설량 막대 왼쪽에 표시되도록 합니다.
+1. 막대는 파란색 사각형으로 만들어 집니다. 막대의 높이는 상수로 지정하며 너비(좌우의 길이)는 강우량 수치를 입력합니다. 아이폰의 가로 길이는 세로 길이보다 짧기 때문에 한 인치를 나타내기 위해서 이전 수직막대 차트보다 더 적은 포인트를 적용합니다.
+1. 가로막대 코드 뒤에 여백을 채워주는 ```Spacer()```채워준 후, 인치 단위로 표현되는 강설량 수치를 ```Text```뷰에 통해 보여줍니다. 소수점 이하 수치의 데이터는 소수점 첫번 째 자리까지 보여주고, 정확히 1 인치인 경우는 1.0과 같이 표기 되도록 하겠습니다.
+
+**SnowfallTab.swift**파일로 돌아가서 ```List```와 ```body``` 안의 클로져(closure)의 내부를 아래와 같이 바꾸겠습니다.
+
+```swift
+SnowfallChart(measurements: station.measurements)
+```
+
+가로막대 차트는 아래와 같이 보여질 것입니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/initial-snowfall-chart.png" width="231">
+</p>
+
+## 눈금 추가하기
+[Adding Grid Lines](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-008)
 
 
 ## 끝으로...
