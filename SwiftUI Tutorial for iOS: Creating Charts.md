@@ -267,7 +267,69 @@ SnowfallChart(measurements: station.measurements)
 ## 눈금 추가하기
 [Adding Grid Lines](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-008)
 
-강설량의 
+강설량의 수치는 크게 변동하므로, 눈금(grid)을 추가해주면 차드를 보다 읽기 쉽게 할수 있습니다. 격자는 수직선으로 그어지고 차트나 그래프의 위에 일정하게 고정된 형태로 위치됩니다. 이 눈금으로 인해 차트를 보는 사람은 보다 쉽게 막대의 길이를 측정할 수 있게됩니다.
+
+> 원문에서는 grid라는 단어를 사용하고 일반적으로 한국어로는 '격자'라고 해석합니다만, '눈금'이라는 표현이 더 적합한 듯 하여 이하에서는 '눈금'으로 번역합니다.
+
+첫번째로, **SnowfallChart**에서 ```Rectangle()```코드를 아래와 같이 바꿔줍니다.
+
+```swift
+ZStack {
+  Rectangle()
+    .fill(Color.blue)
+    .frame(width: CGFloat(measurement.snowfall * 10.0), height: 5.0)
+}
+```
+```ZStack```은 다수의 하위뷰(child views)를 같은 공간에 덮어씌웁니다(overlay). 이 경우에는 가로막대와 눈금이 겹쳐지게 됩니다. 눈금은 1인치 마다 그리고 가장 큰 수치가 16인치이므로 1 ~ 16까지 그려지게 될 것입니다.
+
+아래의 코드를 ```Rectangle```안의 ```ZStack```뒤에 추가합니다.
+
+```swift
+ForEach(0..<17) { mark in
+  Rectangle()
+    .fill(Color.gray)
+    .offset(x: CGFloat(mark) * 10.0)
+    .frame(width: 1.0)
+    .zIndex(1)
+}
+```
+
+```offset(x:y:)```는 눈금을 오른쪽으로 지정된 상수만큼 이동 시킵니다. 눈금의 너비는 ```.frame(width:)``` 1로 설정되도록 합니다. ```zIndex```를 다시금 1로 설정하여 레이어의 최상위에 위치하도록 합니다.
+
+여기서 주목해야 할 점은 높이(height)를 지정하지 않았다는 것입니다. 이런한 경우에 높이는 기본적으로 상위뷰의 높이 많큼 확장되게 됩니다. 지금까지의 작업 내용을 빌드-런 해보면 뭔가 조금 잘못되었다는 것을 알수 있습니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/snowfall-grid-aligned-231x500.png" width="231">
+</p>
+
+눈금이 언제나 일정하게 표시되지 않았습니다. ```ZStack```은 자동적으로 하위뷰를 중앙(center) 정렬하기 때문에, 명시적으로 어떻게 하위뷰를 정렬할 것인지 아래와 같이 변경해야 합니다. ```ZStack```부분을 아래와 같이 고치십시오.
+
+```swift
+ZStack(alignment: .leading) {
+```
+
+이제 눈금과 가로막대로 의도했던대로 보여질 것입니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/initial-snowfall-chart.png" width="231">
+</p>
+
+이렇게 수 많은 눈금이 그어질 때, 일정 간격마다 시각적인 단서(visual cue)를 표시한다면 가독성은 더욱 향상 될 것입니다. ```.fill()```을 아래와 같이 바꾸겠습니다.
+
+```swift
+.fill(mark % 5 == 0 ? Color.black : Color.gray)
+```
+
+위 코드는 삼항연산자(ternary operator)을 통해 사용하여 매 5번째 눈금을 검은색으로 지정합니다. 
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/snowfall-red-mark-1-231x500.png" width="231">
+</p>
+
+여기까지 여러분은 두 개의 기본적인 차트를 성공적으로 만들었습니다. 이제 온도 데이터를 표시할 적외선 열지도(heat map)를 만들어 보겠습니다.
+
+## 적외선 열지도 만들기
+[Creating a Heat Map](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-009)
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
