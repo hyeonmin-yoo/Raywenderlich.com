@@ -337,7 +337,11 @@ ZStack(alignment: .leading) {
 var measurements: [DayInfo]
 ```
 
-preview에 아래의 
+preview에 아래의 같이 데이터를 제공 하겠습니다.
+
+```swift
+TemperatureChart(measurements: WeatherInformation()!.stations[1].measurements)
+```
 
 
 ## 끝으로...
