@@ -400,6 +400,33 @@ GeometryReader { reader in
 코드가 많지만, 이 함수는 필요한 계산을 단순화합니다. 아래를 보면 코드가 어떻게 작동하는지 이해 할 수 있습니다.
 
 1. ```GeometryReader```를 생성함으로서, 차트가 감싸집니다. ```GeometryReader```는 뷰가 가지고 있는 컨텐츠를 채우기 위해 스스로 확장됩니다.
+이전 차트에서는 수치를 정확하게 표현하기 위해 고정된 크기의 바를 생성했지만, 이번 차트에서는 정확한 값을 계산하기 위해서 위의 함수(```dayOffset(_:dWidth:)``` ```tempOffset(_:degreeHeight:)```)를 사용합니다.
+1. ```Path```를 2차원 형상을 만들수 있습니다. 여기서는 하루 하루의 최저-최고 온도를 수직선 형태로 만듭니다. 또한, ```Path```는 SwiftUI에서 특수한 기능을 제공합니다. ```Path``` 영역 안에서 변수를 정의하는 것이 가능하며 이는 포인트의 계산을 쉽게 합니다.
+1. 두 함수를 이용해 ```GeometryReader```에서 사용되는 날짜의 온도 포인트와 날짜가 포인트를 계산합니다. 온도 범위는 화씨(Fahrenheit) 110은 -10에서 100도까지를 표현할 수 있으며 이는 해당 연도에 모든 온도 데이터를 표현할 수 있는 범위입니다.
+1. 이미 정의된 함수를 통해 각 날짜별 최저-최고 온도의 수직 포인트를 계산합니다.
+1. ```Path```의 포인터를 최저 온도 포인트로 이동시켜 최고 온도 포인트까지 선을 긋습니다. 이 수직뷰의 좌표는 뷰의 가장 위에서 시작하여 아래쪽 방향으로 증가합니다. 반대 방향으로 선을 그을 때는, ```reader.size.height```에서 값을 뺌으로서 원하는 위치를 계산합니다.
+1. ```stroke()```를 통해 SwiftUI에 선을 만들도록(render)를 합니다. 색(Color)은 기본 색상이 기본값으로(current system color) 설정됩니다.
+
+새로만든 뷰를 표시하기 위해 **TemperatureTab.swift** 파일을 열어 ```body```를 아래와 같이 바꿉니다.
+
+```swift
+VStack {
+  Text("Temperatures for 2018")
+  TemperatureChart(measurements: station.measurements)
+}.padding()
+```
+
+앱을 빌드-런 하고 관측소 하나를 선택합니다. 그리고 온도 탭(temperature tab)을 터치하여 열지도 맵을 살펴보겠습니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/initial-temp-chart.png" width="231">
+</p>
+
+이 열지도 차트는 온도 변화를 꽤 잘 보여주고 있습니다만 조금 지루합니다. 다음으로 색을 지정하여 온도 변화를 좀 더 시각적으로 표현해 보겠습니다.
+
+## 열지도에 색상 추가하기
+[Adding Heat Map Color](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-010)
+
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
