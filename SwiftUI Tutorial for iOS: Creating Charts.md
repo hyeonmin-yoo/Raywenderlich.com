@@ -424,7 +424,7 @@ VStack {
 
 이 열지도 차트는 온도 변화를 꽤 잘 보여주고 있습니다만 조금 지루합니다. 다음으로 색을 지정하여 온도 변화를 좀 더 시각적으로 표현해 보겠습니다.
 
-## 열지도에 색상 추가하기
+## 열지도에 색 추가하기
 [Adding Heat Map Color](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-010)
 
 
