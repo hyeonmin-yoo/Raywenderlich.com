@@ -328,7 +328,7 @@ ZStack(alignment: .leading) {
 
 여기까지 여러분은 두 개의 기본적인 차트를 성공적으로 만들었습니다. 이제 온도 데이터를 표시할 적외선 열지도(heat map)를 만들어 보겠습니다.
 
-## 적외선 열지도 만들기
+## 열지도 만들기
 [Creating a Heat Map](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-009)
 
 먼저 TemperatureChart라는 이름으로 새로운 SwiftUI 뷰를 **Charts** 그룹에 만들겠습니다. **TemperatureChart.swift**을 열고 ```struct``` 위에 측정값 데이터 변수를 만들겠습니다.
@@ -354,6 +354,52 @@ func dayWidth(_ width: CGFloat, count: Int) -> CGFloat {
   width / CGFloat(count)
 }
 ````
+
+시행 착오에 의한 정해진 총량을 사용하는 대신에, 이 차트는 위 함수를 통해 스스로 뷰에 맞게 조절됩니다. 첫 번째 함수는 온도 1도 단위당 수직 포인트를, 두 번째 함수는  하루 단위를 이용해 수평적으로 계산합니다. 이 두 함수 모두 치수의 크기(dimension)를 각 요소의 숫자로 나눕합니다. 결과값은 ```Float```형태의 숫자입니다.
+
+위의 함수를 통해, 각 포인트의 위치가 결정됩니다. 아래의 함수를 위 함수의 아래에 추가하십시오.
+
+```swift
+func dayOffset(_ date: Date, dWidth: CGFloat) -> CGFloat {
+  CGFloat(Calendar.current.ordinality(of: .day, in: .year, for: date)!) * dWidth
+}
+
+func tempOffset(_ temperature: Double, degreeHeight: CGFloat) -> CGFloat {
+  CGFloat(temperature + 10) * degreeHeight
+}
+```
+
+```dayOffset(_:dWidth:)```은 넘겨진 날짜 통해 해당 연도의 날짜를 계산하고 ```dWidth``` 전달인자를 통해 곱합니다. 이로서 수평적 위치를 뷰에 정하게 됩니다.
+
+```tempOffset(_:degreeHeight:)``` 함수도 주어진 온도 전달인자를 통해 비슷한 계산을 합니다. 온도의 범위가 -10에서 시작되었기 때문에, 곱셈 전에 다시 10을 더합니다.
+
+```body```는 아래와 같이 바꿉니다.
+
+```swift
+// 1
+GeometryReader { reader in
+  ForEach(self.measurements) { measurement in
+    // 2
+    Path { p in
+      // 3
+      let dWidth = self.dayWidth(reader.size.width, count: 365)
+      let dHeight = self.degreeHeight(reader.size.height, range: 110)
+      // 4
+      let dOffset = self.dayOffset(measurement.date, dWidth: dWidth)
+      let lowOffset = self.tempOffset(measurement.low, degreeHeight: dHeight)
+      let highOffset = self.tempOffset(measurement.high, degreeHeight: dHeight)
+      // 5
+      p.move(to: CGPoint(x: dOffset, y: reader.size.height - lowOffset))
+      p.addLine(to: CGPoint(x: dOffset, y: reader.size.height - highOffset))
+      // 6
+    }.stroke()
+  }
+}
+```
+
+코드가 많지만, 이 함수는 필요한 계산을 단순화합니다. 아래를 보면 코드가 어떻게 작동하는지 이해 할 수 있습니다.
+
+1. ```GeometryReader```를 생성함으로서, 차트가 감싸집니다. ```GeometryReader```는 뷰가 가지고 있는 컨텐츠를 채우기 위해 스스로 확장됩니다.
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
