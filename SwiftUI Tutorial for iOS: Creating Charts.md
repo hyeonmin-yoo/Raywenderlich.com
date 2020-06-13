@@ -471,7 +471,8 @@ let tempGradient = Gradient(colors: [
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/temp-color.png" width="231">
 </p>
 
-
+## 눈금선과 라벨 추가하기
+[Adding Grid Lines and Labels](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-011)
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
