@@ -484,7 +484,38 @@ func tempLabelOffset(_ line: Int, height: CGFloat) -> CGFloat {
 }
 ```
 
-위 코드는 
+위 코드는 격자-눈금선을 10도 단위의 블럭(blocks)으로 나누고 리턴값으로는 뷰의 높이에 따라 10으로 나뉘어진 시작 온도값을 나타내는 ```integer```를 돌려줍니다.
+이 함수는 적절한 ```offset```을 계산합니다.
+
+격자-눈금선과 라벨을 그리기 위해 아래의 코드를 ```body```의 ```forEach```의 닫힌 브레이스(closing bracket) 아래의 추가하겠습니다.
+
+```swift
+// 1
+ForEach(-1..<11) { line in
+  // 2
+  Group {
+    Path { path in
+      // 3
+      let y = self.tempLabelOffset(line, height: reader.size.height)
+      path.move(to: CGPoint(x: 0, y: y))
+      path.addLine(to: CGPoint(x: reader.size.width, y: y))
+      // 4
+    }.stroke(line == 0 ? Color.black : Color.gray)
+    // 5
+    if line >= 0 {
+      Text("\(line * 10)°")
+        .offset(x: 10, y: self.tempLabelOffset(line, height: reader.size.height))
+    }
+  }
+}
+```
+코드 분석은 아래와 같습니다.
+
+1. 반복문은 화씨 -10도에서 100도까지 나타내기 위해 -1에서 10까지 반복됩니다.
+1. ```Group```뷰는 SwiftUI에서 풀(glue)과 같은 역할을 합니다. 하위 뷰를 결합하지만 직접적으로 렌더링하지는 않습니다. 여기에서는 ```Path```와 ```Text()```가 그 역할을 합니다.
+1. 조금 전에 추가한 함수 ```tempLabelOffset(_:_:)```을 사용하여 그려질 (격자-눈금선 중에) 수평라인의 위치를 계산하고 왼쪽에서 오른쪽으로 그립니다.
+1. 대부분의 수평라인은 회색(gray)으로, 0도를 나타내는 선은 검은색으로 그려집니다.
+1. 첫번 
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
