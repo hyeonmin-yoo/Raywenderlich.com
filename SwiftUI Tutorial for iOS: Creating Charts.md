@@ -471,8 +471,20 @@ let tempGradient = Gradient(colors: [
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/temp-color.png" width="231">
 </p>
 
-## 눈금선과 라벨 추가하기
+## 격자-눈금선(Grid lines)과 라벨 추가하기
 [Adding Grid Lines and Labels](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-011)
+
+이제 남은 일은 막대차트에서와 같이 유저로 하여금 차트를 조금 더 읽기 쉽도록 격자-눈금선을 추가하는 것입니다.**TemperatureChart.swift**에 아래의 헬퍼 함수를 추가하십시오.
+
+```swift
+func tempLabelOffset(_ line: Int, height: CGFloat) -> CGFloat {
+  height - self.tempOffset(
+    Double(line * 10),
+    degreeHeight: self.degreeHeight(height, range: 110))
+}
+```
+
+위 코드는 
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
