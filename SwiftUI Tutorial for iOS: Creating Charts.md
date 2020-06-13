@@ -427,6 +427,51 @@ VStack {
 ## 열지도에 색 추가하기
 [Adding Heat Map Color](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-010)
 
+열지도는 컬러를 사용하여 시각적으로 값을 나타냅니다. 날씨 관련 지도는 온도를 나타낼 때 주로 보라색-연한 파란색을 이용하여 낮은 온도를, 그리고 노랑색-보라색-붉은색으로 높은 온도를 표현합니다. 이러한 온도변화에 따른 색조합은 복잡한 수학적 계산을 필요로 하지만 여기서는 단순화하여 나타내겠습니다.
+
+SwiftUI에서는 이러한 온도 변화에 그레이디언트(gradient)를 사용합니다. 선형(linear) 그레이디언트는 두가지 이상의 색변화를 하나의 축(single axis)을 따라서 매끄럽게 만듭니다. 아래의 코드를 **TemperatureChart.swift**의 ```measurements```아래, 헬퍼 함수 사이에 추가하도록 하겠습니다.
+
+```swift
+let tempGradient = Gradient(colors: [
+  .purple,
+  Color(red: 0, green: 0, blue: 139.0/255.0),
+  .blue,
+  Color(red: 30.0/255.0, green: 144.0/255.0, blue: 1.0),
+  Color(red: 0, green: 191/255.0, blue: 1.0),
+  Color(red: 135.0/255.0, green: 206.0/255.0, blue: 250.0/255.0),
+  .green,
+  .yellow,
+  .orange,
+  Color(red: 1.0, green: 140.0/255.0, blue: 0.0),
+  .red,
+  Color(red: 139.0/255.0, green: 0.0, blue: 0.0)
+])
+```
+
+위 코드는 12가지 색상으로 구성된 그레이디언트를 110도까지의 온도 범위를 10도 단위로 나타냅니다. 시작은 -10도는 보라색으로 100도는 검은색을 사용하겠습니다.
+
+```body```부분에서 ```stroke()```를 아래와 같이 바꾸겠습니다.
+
+```swift
+.stroke(LinearGradient(
+  gradient: self.tempGradient,
+  startPoint: UnitPoint(x: 0.0, y: 1.0),
+  endPoint: UnitPoint(x: 0.0, y: 0.0)))
+```
+
+검은색으로 단조롭게 표현되던 색을 위에서 정의한 선형 그레이디언트를 사용하였습니다. ```startPoint```와 ```startPoint```매개변수는 거의 마법과 같은 기능을 합니다.
+
+두 매개변수 모두 ```UnitPoints```를 사용하고 ```UnitPoints```는 뷰의 가장자리인 0.0과 1.0 사이 사이에서 온도변화에 따른 색을 표현하게 됩니다. 0.0은 시작 지점(origin)이고 뷰 기준으로 왼쪽-상단입니다.
+
+시작 지점으로 뷰의 왼쪽-아래를, 끝나는 지점은 왼쪽-상단을 지정했습니다. 이 그레이디언트는 선형 그레이디언트이기 때문에 색 변화는 수직적으로만 나타나며 수평적으로는 동일한 색상만 보여집니다.
+
+런-빌드하여 결과를 확인하겠습니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/temp-color.png" width="231">
+</p>
+
+
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
