@@ -521,10 +521,54 @@ ForEach(-1..<11) { line in
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/temp-grid-lines.png" width="231">
 </p>
 
+온도 관련 부분이 끝났으므로 이제는 인티케이터(indicators)와 라벨을 추가하는 것으로 이 튜토리얼을 끝내겠습니다. 기존의 두 헬퍼 함수를 아래와 같이 바꾸겠습니다.
+
+```swift
+func offsetFirstOfMonth(_ month: Int, width: CGFloat) -> CGFloat {
+  let dateFormatter = DateFormatter()
+  dateFormatter.dateFormat = "M/d/yyyy"
+  let foM = dateFormatter.date(from: "\(month)/1/2018")!
+  let dayWidth = self.dayWidth(width, count: 365)
+  return self.dayOffset(foM, dWidth: dayWidth)
+}
+
+func monthAbbreviationFromInt(_ month: Int) -> String {
+  let ma = Calendar.current.shortMonthSymbols
+  return ma[month - 1]
+}
+```
+
+아래의 코드를 추가하여 월(month)을 구분하는 수직 격자 라인과 라벨을 ```body```안쪽 끝부분, 이전 ```ForEach``` 반복문 뒤에 삽입하겠습니다.
+
+```swift
+ForEach(1..<13) { month in
+  Group {
+    Path { path in
+      let dOffset = self.offsetFirstOfMonth(month, width: reader.size.width)
+
+      path.move(to: CGPoint(x: dOffset, y: reader.size.height))
+      path.addLine(to: CGPoint(x: dOffset, y: 0))
+    }.stroke(Color.gray)
+    Text("\(self.monthAbbreviationFromInt(month))")
+      .font(.subheadline)
+      .offset(
+        x: self.offsetFirstOfMonth(month, width: reader.size.width) +
+          5 * self.dayWidth(reader.size.width, count: 365),
+        y: reader.size.height - 25.0)
+  }
+}
+```
+모두 전에 사용했던 익숙한 코드입니다. ```Group```은 격자라인과 달(month) 라벨을 감쌉(wrap)니다. 그리고 각 달의 1일을 기준으로 하는 수직 라인을 그려 넣습니다. 텍스트뷰에 각 달 이름의 축약어를 지정하고 약간의 계산을 통해 위치를 지정합니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/final-temp-chart-231x500.png" width="231">
+</p>
+
+이제 완성된 차트는 읽기 쉽게 온도 각 관측소의 온도 범위를 보여줍니다. 수직 눈금선은 온도 색상과 함께 명확하게 한 해 동안의 온도 변화를 나타냅니다. 수평 눈금선과 라벨은 해당 연도와 온도범위를 이해하는데 도움을 줍니다. 
+
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
 
-스위프트 개선 프로젝트(Swift Evolution process)에 대해서는 알아보고 싶은신 분은 아래의 링크를 참고 하십시오.
-* []() 이 문서는 Swift 업데이트마다 간단한 변경사항에 대한 요약을 제공합니다.
+완성된 프로젝트를 
 
 > 이 글에 대한 토론/댓글을 보거나 작성하실 분은 [클릭]()하십시오.
