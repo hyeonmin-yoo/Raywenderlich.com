@@ -515,7 +515,11 @@ ForEach(-1..<11) { line in
 1. ```Group```뷰는 SwiftUI에서 풀(glue)과 같은 역할을 합니다. 하위 뷰를 결합하지만 직접적으로 렌더링하지는 않습니다. 여기에서는 ```Path```와 ```Text()```가 그 역할을 합니다.
 1. 조금 전에 추가한 함수 ```tempLabelOffset(_:_:)```을 사용하여 그려질 (격자-눈금선 중에) 수평라인의 위치를 계산하고 왼쪽에서 오른쪽으로 그립니다.
 1. 대부분의 수평라인은 회색(gray)으로, 0도를 나타내는 선은 검은색으로 그려집니다.
-1. 첫번 
+1. 첫 번째를 제외한 모든 라인에는 라벨이 붙여집니다. 더 이상 ```Path```영역이 아니기 때문에 라벨이 추가될 위치, 즉 각 수평라인의 위치를 다시 계산헤야 합니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/11/temp-grid-lines.png" width="231">
+</p>
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6398124-swiftui-tutorial-for-ios-creating-charts#toc-anchor-012)
