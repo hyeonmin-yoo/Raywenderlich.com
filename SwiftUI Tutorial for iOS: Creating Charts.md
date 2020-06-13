@@ -571,8 +571,8 @@ ForEach(1..<13) { month in
 
 글 상단의 **Download Materials** 버튼을 통해 완성된 프로젝트를 다운로드 할 수 있습니다.
 
-SwiftUI에 대해 더 배우고 싶다면 **Apple Human Interface Guidelines**은 좋은 출발점이 될 것입니다. [Chart](https://developer.apple.com/design/human-interface-guidelines/carekit/app-architecture/charts/) 간단한 섹션을 찾을 수 있고 색을 선택 할때에는 [Color](https://developer.apple.com/design/human-interface-guidelines/carekit/visual-design/color/) 참고 할 수 있습니다.
+SwiftUI에 대해 더 배우고 싶다면 **Apple Human Interface Guidelines**은 좋은 출발점이 될 것입니다. [Chart](https://developer.apple.com/design/human-interface-guidelines/carekit/app-architecture/charts/)에서 간단한 섹션을 찾을 수 있고 색을 선택 할때에는 [Color](https://developer.apple.com/design/human-interface-guidelines/carekit/visual-design/color/)를 참고 할 수 있습니다.
 
 [SwiftUI by Tutorial](https://store.raywenderlich.com/products/swiftui-by-tutorials) 책의 챕터 13: **Drawing and Custom Graphics**은 좋은 지침서가 될 수 있습니다. 아마도 저자인 제가 이런 말을 하는 것은 객관적이지 못하겠지만 말입니다. :]
 
-> 이 글에 대한 토론/댓글을 보거나 작성하실 분은 [클릭]()하십시오.
+> 이 글에 대한 토론/댓글을 보거나 작성하실 분은 [클릭](https://forums.raywenderlich.com/t/swiftui-tutorial-for-ios-creating-charts-raywenderlich-com/93686/8)하십시오.
