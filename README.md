@@ -12,4 +12,4 @@
 ## 목록, Contents
 * [What's New In Swift5.2](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/What's%20New%20In%20Swift5.2.md)
 * [SwiftUI Tutorial for iOS: Creating Charts](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/SwiftUI%20Tutorial%20for%20iOS:%20Creating%20Charts.md)
-* [Alamofire 5 Tutorial for iOS: Getting Started](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started)
+* [Alamofire 5 Tutorial for iOS: Getting Started](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/Alamofire%205%20Tutorial%20for%20iOS.md)
