@@ -39,4 +39,9 @@
   <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/1-1.png" width="231">
 </p>
 
-거의 
+거의 아무 것도 없는 백지상태입니다만 여러분이 그 공백을 채울 것입니다.
+
+> 보통 Alamofire는 CocoaPods 혹은 또 다른 써드 파티 라이브러리 관리 도구(dependency manager)를 통해 프로젝트와 통합되어 집니다. 이 튜토리얼에서 Alamofire는 이미 다운로드 되어 프로젝트에 통합되어 있습니다. CocoaPods를 통해 Alamofire를 프로젝트에 통합하는 과정은 [CocoaPods Tutorial for Swift: Getting Started](https://www.raywenderlich.com/626-cocoapods-tutorial-for-swift-getting-started)를 참조해 주십시오.
+
+## SW(스타워즈) API 사용하기
+[Using the SW API](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-002)
