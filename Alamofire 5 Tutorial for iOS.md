@@ -29,3 +29,14 @@
 ## 시작하며...
 [Getting Started](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-001)
 
+튜토리얼을 시작하기 위해 이 글 상단의 **Download Materials**을 통해 프로젝트를 다운로드하고 begin 폴더의 프로젝트를 열겠습니다.
+
+이 튜토리얼을 위한 프로젝트 **StarWarsOpedia**는 스타워즈 영화 데이터에 빠르게 접근가능하고 ~~우주선(starships)에도 접근가능 합니다~~.
+
+빌드-런하면 아래와 같은 화면을 볼수 있습니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/1-1.png" width="231">
+</p>
+
+거의 
