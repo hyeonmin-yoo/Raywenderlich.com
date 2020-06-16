@@ -79,3 +79,5 @@ Swift 4 이전~~의 암흑기~~에는 JOSN을 데이터 오브젝트(data object
 
 HTTP, JSON 및 REST는 개발자가 사용할 수 있는 웹 서비스의 상당 부분을 구성합니다. 각 부분의 하나 하나가 어떻게 동작하는지 이해하는 것은 너무 과한 일입니다. 그리고 이 지점이 *왜 Alamofire를 사용해야 하는가*에 대한 대답일 수 있습니다.
 
+## 왜 Alamofire를 사용해야 하는가?
+[Why Use Alamofire?](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-004)
