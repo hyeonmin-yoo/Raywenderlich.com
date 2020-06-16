@@ -128,8 +128,21 @@ extension MainTableViewController {
 
 마지막으로, ```viewDidLoad()```의 끝 부분에 아래의 코드를 추가합니다.
 
-```swift
+```
 fetchFilms()
 ```
 
-여러분이 방금
+여러분이 방금 작성한 코드는 Alamofire request의 시발점이 될 것이며 빌드-런 하면 콘솔(console)에서 아래와 같은 화면을 볼 수 있을 것입니다.
+```
+success({
+  count = 7;
+  next = "<null>";
+  previous = "<null>";
+  results =  ({...})
+})
+```
+
+단지 짧은 몇 줄의 코드이지만 성공적으로 서버로부터 JSON 데이터를 가져왔습니다. ~~Good job!~~
+
+## Codable Data Model 사용하기
+[Using a Codable Data Model](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-006)
