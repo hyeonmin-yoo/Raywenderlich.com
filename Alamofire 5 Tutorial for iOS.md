@@ -45,3 +45,15 @@
 
 ## SW(스타워즈) API 사용하기
 [Using the SW API](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-002)
+
+**SW API** 오픈 API이고 무료로 Star Wars 관련 데이터를 제공며 주기적으로 업데이트 됩니다. Alamofire를 배우기 위한 흥미로운 방법이 될 것입니다. [ swapi.dev](https://swapi.dev/)에서 SW API를 접속해 보시기 바랍니다.
+
+SW API는 다양하고 상세한 데이터에 접근하는 것이 가능합니다만 이 튜토리얼에서는 두 API에 집중하겠습니다.
+* [https://swapi.dev/api/films](https://swapi.dev/api/films)
+* [https://swapi.dev/api/starships](https://swapi.dev/api/starships)
+
+SW API에 대해 깊은 관심이 있다면 [Swapi documentation](https://swapi.dev/documentation)를 참고하십시오.
+
+## HTTP, REST, JSON 이해하기
+[Understanding HTTP, REST and JSON](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-003)
+
