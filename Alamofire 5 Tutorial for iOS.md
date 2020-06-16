@@ -70,6 +70,12 @@ SW API에 대해 깊은 관심이 있다면 [Swapi documentation](https://swapi.
 
 Swift 4 이전~~의 암흑기~~에는 JOSN을 데이터 오브젝트(data objects)로 혹은 그 반대로 변환하기 위해 ```JSONSerialization``` 클래스를 사용했었습니다. 이는 잘 작동했고 지금도 사용할 수 있지만, 지금은 ```Codable```이라는 더 나은 방법을 주로 사용합니다. ```Codable```을 준수하는 것으로, 거의 반자동적으로 JSON과 여러분 프로젝트의 데이터 모델(data models) 사이의 (혹은 그 반대로) 변환이 이루어 집니다.
 
-**REST**
+**REST** 또는 **REpresentational State Transfer**는 일관된 Web API를 설계하계하기 위한 일종의 규칙의 세트(set of rules)입니다. REST는 몇가지 구조상의 표준화된 규칙을 가집니다. 
+* **무상태성(Stateless)**: 각각의 요청(requests)을 별경의 것으로 인식 및 철리하며, 이전 요청이 다음 요청에 연관되지 않도록 할 것
+* 요청을 **캐시 가능** 하도록(cacheable) 할 것
+* **동인한 인터페이스(Uniform interfaces)** 를 제공할 것
 
+이러한 규칙은 API와의 앱 개발에 있어, 요청에 따른 데이터 상태의 추적없이 앱과 API의 통합을 더욱 쉽게 합니다.
+
+HTTP, JSON 및 REST는 개발자가 사용할 수 있는 웹 서비스의 상당 부분을 구성합니다. 각 부분의 하나 하나가 어떻게 동작하는지 이해하는 것은 너무 과한 일입니다. 그리고 이 지점이 왜 Alamofire를 사용해야 하는가에 대한 대답일 수 있습니다.
 
