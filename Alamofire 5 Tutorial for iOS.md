@@ -72,7 +72,7 @@ Swift 4 이전~~의 암흑기~~에는 JOSN을 데이터 오브젝트(data object
 
 **REST** 또는 **REpresentational State Transfer**는 일관된 Web API를 설계하계하기 위한 일종의 규칙의 세트(set of rules)입니다. REST는 몇가지 구조상의 표준화된 규칙을 가집니다. 
 * **무상태성(Stateless)**: 각각의 요청(requests)을 별경의 것으로 인식 및 철리하며, 이전 요청이 다음 요청에 연관되지 않도록 할 것
-* 요청을 **캐시 가능** 하도록(cacheable) 할 것
+* 요청을 **캐시 가능 하도록(Cacheable)** 할 것
 * **동인한 인터페이스(Uniform interfaces)** 를 제공할 것
 
 이러한 규칙은 API와의 앱 개발에 있어, 요청에 따른 데이터 상태의 추적없이 앱과 API의 통합을 더욱 쉽게 합니다.
