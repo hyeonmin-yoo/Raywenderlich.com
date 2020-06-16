@@ -97,3 +97,39 @@ HTTP, JSON 및 REST는 개발자가 사용할 수 있는 웹 서비스의 상당
 
 ## 데이터 요청하기
 [Requesting Data](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-005)
+
+코드 작성을 시작하기에 앞서 몇 가지 셋업을 할 필요가 있습니다.
+
+**MainTableViewController.swift** 파일을 열고 ```import UIKit```아래에 아래와 같이 코드를 추가 하십시오.
+
+```swift
+import Alamofire
+```
+
+이것으로 Alamofire를 view controller에서 사용할 수 있습니다. 계속해서 아래의 코드를 파일의 가장 아래 부분에 추가합니다.
+
+```swift
+extension MainTableViewController {
+  func fetchFilms() {
+    // 1
+    let request = AF.request("https://swapi.dev/api/films")
+    // 2
+    request.responseJSON { (data) in
+      print(data)
+    }
+  }
+}
+```
+
+코드 해석 입니다.
+
+1. Alamofire는 **namespacing**를 사용하므로 모든 호출의 앞서 접두사로 ```AF```를 사용합니다.. ```request(_:method:parameters:encoding:headers:interceptor:)```는 데이터 요청을 위해 엔드 포인트(endpoint) 정보를 담습니다. 사실 더 많은 매개변수를 지정할 수 있지만 여기에서는 필수 매개변수 값(default parameter values)인 URL만 지정하겠습니다.
+1. 요청에 따른 응답(response)을 JSON 데이터 형태로 받습니다. 여기에서는 디버깅을 위해 응답받은 JSON을 간단히 print 하도록 하겠습니다.
+
+마지막으로, ```viewDidLoad()```의 끝 부분에 아래의 코드를 추가합니다.
+
+```swift
+fetchFilms()
+```
+
+여러분이 방금
