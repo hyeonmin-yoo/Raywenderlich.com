@@ -68,7 +68,7 @@ SW API에 대해 깊은 관심이 있다면 [Swapi documentation](https://swapi.
 
 **JSON**은 자바스크립트 표기법(JavaScript Object Notation)으로 나타냅니다. 직관적(straightforward)이고, 읽기쉬운(human-readable ) 전송 메카니즘을 가지고 서버-클라이언트 사이에서 데이터를 송수신 합니다. JSON은 string, boolean, array, object/dictionary, number, null과 같은 제한된 데이터 타입(data type)만이 사용 가능합니다. 
 
-Swift 4 이전의 암흑기에는 JOSNdmf 데이터 오브젝트(data objects)로 혹은 그 반대로 변환하기 위해 ```JSONSerialization``` 클래스를 사용했었습니다. 이는 잘 작동했고 지금도 사용할 수 있지만, 지금은 ```Codable```이라는 더 나은 방법을 주로 사용합니다. ```Codable```을 준수하는 것으로, 거의 반자동적으로 JSON과 여러분 프로젝트의 데이터 모텔(data models) 혹은 그 반대로 변환이 이루어 집니다.
+Swift 4 이전~~의 암흑기~~에는 JOSN을 데이터 오브젝트(data objects)로 혹은 그 반대로 변환하기 위해 ```JSONSerialization``` 클래스를 사용했었습니다. 이는 잘 작동했고 지금도 사용할 수 있지만, 지금은 ```Codable```이라는 더 나은 방법을 주로 사용합니다. ```Codable```을 준수하는 것으로, 거의 반자동적으로 JSON과 여러분 프로젝트의 데이터 모텔(data models) 혹은 그 반대로 변환이 이루어 집니다.
 
 **REST**
 
