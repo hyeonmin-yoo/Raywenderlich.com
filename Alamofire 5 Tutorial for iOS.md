@@ -81,3 +81,14 @@ HTTP, JSON 및 REST는 개발자가 사용할 수 있는 웹 서비스의 상당
 
 ## 왜 Alamofire를 사용해야 하는가?
 [Why Use Alamofire?](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-004)
+
+여러분은 혹시 왜 Alamofire를 사용해야 하는지에 대한 궁금증을 갖을 수 있습니다. Apple은 HTTP 프로토콜을 통해 APIs에 접근할 수 있도록 이미 ```URLSession```와 관련된 클래스를 제공함에도 불구하고 왜 또 다른 라이브러리(dependency)를 추가해야 할까요?
+
+가장 간단히 대답하자면, Alamofire 역시 URLSession을 기반으로 하지만 네트워킹 호출(networking calls), 앱 제작 그 자체(business logic)에 더욱 집중할 수 있기 때문입니다. 즉, 더 적은 노력으로 인터넷 데이터에 접근할 수 있고 여러분의 소스코드는 더 읽기 쉽고 깨끗해 질 것입니다.
+
+아래는 대표적인이고 주요한 Alamofire의 함수입니다.
+* **AF.upload**: 멀티-파트(multi-part), 스트림(stream), 파일 또는 데이터 방식으로 파일을 업로드 합니다.
+* **AF.download**: 파일을 다운로드 하거나 또는 이미 다운로드 중인 작업을 재개합니다.
+* **AF.request**: 파일 전송과 관련없는 HTTP 요청
+
+위 
