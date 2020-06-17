@@ -146,3 +146,112 @@ success({
 
 ## Codable Data Model 사용하기
 [Using a Codable Data Model](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-006)
+
+이제 JSON 형태로 되돌아온 데이터를 어떻게 사용할지 알아보겠습니다. JSON 데이터는 계층적인 구조를 가지고 있기 때문에 아무런 가공없이 바로 사용하는 것은 아주 불편한 일일 것 입니다. 그러므로 모델(models)을 만들어서 데이터를 저장 하겠습니다.
+
+프로젝트 네이게이터에서 **Networking**그룹 찾아 새로운 Film.swift 파일을 만듭니다. 그리고 다음 코드를 추가하겠습니다.
+```swift
+struct Film: Decodable {
+  let id: Int
+  let title: String
+  let openingCrawl: String
+  let director: String
+  let producer: String
+  let releaseDate: String
+  let starships: [String]
+  
+  enum CodingKeys: String, CodingKey {
+    case id = "episode_id"
+    case title
+    case openingCrawl = "opening_crawl"
+    case director
+    case producer
+    case releaseDate = "release_date"
+    case starships
+  }
+}
+```
+API의 film으로부터 가져온 데이터를 맵핑할 데이터 프로퍼티와 코딩 키(Coding keys)를 만들었습니다. 여기에서는 **어떻게** 스트럭트가 ```Decodable```이 되는지에 주목할 필요가 있습니다. 이 부분이 바로 JSON이 data model 바뀌는 부분입니다.
+
+이 튜토리얼에서 나중에 보여줄 상세한 정보를 단순화 하기 위해, ```Displayable``` 프로토콜을 정의 하겠습니다. 이 부분에서 중요한 부분은 ```Film```이 Displayble을 준수하도록 하는 것 입니다. 다음 코드를 **Film.swift**의 끝 부분에 추가하겠습니다.
+
+```swift
+extension Film: Displayable {
+  var titleLabelText: String {
+    title
+  }
+  
+  var subtitleLabelText: String {
+    "Episode \(String(id))"
+  }
+  
+  var item1: (label: String, value: String) {
+    ("DIRECTOR", director)
+  }
+  
+  var item2: (label: String, value: String) {
+    ("PRODUCER", producer)
+  }
+  
+  var item3: (label: String, value: String) {
+    ("RELEASE DATE", releaseDate)
+  }
+  
+  var listTitle: String {
+    "STARSHIPS"
+  }
+  
+  var listItems: [String] {
+    starships
+  }
+}
+```
+
+위 extension을 사용하면 상세 정보를 표시하는 뷰 컨트롤러가 모델 자체에서 필름에 대한 올바른 라벨과 값을 가져올 수 있습니다.
+
+Networking 그룹에서 Films.swift 파일을 만들어 아래 코드를 추가 하겠습니다.
+
+```swift
+struct Films: Decodable {
+  let count: Int
+  let all: [Film]
+  
+  enum CodingKeys: String, CodingKey {
+    case count
+    case all = "results"
+  }
+}
+```
+
+위 스트럭트는 영화 데이터 컬렉션을 의미합니다. 이전 콘솔에서 본 것과 같이, **swapi.dev/api/films**는 네 가지 주요한 값 ```count```, ```next```, ```previous```, ```results```를 보냅니다. 이 앱에서는 ```count```와 ```results```만을 사용할 예정이므로 ```next```, ```previous``` 프로퍼티는 생성하지 않겠습니다.
+
+CodingKeys에서 정의한대로, 서버에서 ```results``` 로 이름 붙여진 데이터는 코드에서 ```all```이라는 변수명으로 바뀌어 사용됩니다. 다시 한번 강조하겠습니다. data model이 ```Decodable```을 준수하는 것으로서 Alamofire는 JSON 데이터를 여러분이 작성한 data model로 변환됩니다.
+
+> ```Codable```에 대해서 보다 자세히 알고자 한다면, [Encoding and Decoding in Swift](https://www.raywenderlich.com/3418439-encoding-and-decoding-in-swift) 튜토리얼을 참조 하십시오.
+
+이제 **MainTableViewController.swift** 팔일로 이동해서 ```fetchFilms()```의 코드를...
+
+Before
+```swift
+request.responseJSON { (data) in
+  print(data)
+}
+```
+
+아래와 같이 바꾸겠습니다.
+
+After
+```swift
+request.responseDecodable(of: Films.self) { (response) in
+  guard let films = response.value else { return }
+  print(films.all[0].title)
+}
+```
+
+응답(response) 받은 내용을 JSON으로 변환하는 대신에, data model로 변환했으며, 디버깅을 위해 첫번 째 타이틀을 콘솔에 프린트(print) 했습니다.
+
+빌드-런하여 첫 번째 타이틀이 무엇인지 확인하십시오. 다음은 모든 영화 데이터를 표시하는 작업을 이어가겠습니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/2-1-650x108.png" width="650">
+</p>
