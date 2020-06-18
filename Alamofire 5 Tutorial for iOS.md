@@ -278,3 +278,24 @@ AF.request("https://swapi.dev/api/films")
 
 ## 테이블 뷰 준비하기
 [Setting up Your Table View](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-008)
+
+MainTableViewController의 가장 위에 다음 코드를 추가하겠습니다.
+
+```swift
+var items: [Displayable] = []
+```
+
+서버로부터 취득한 데이터 배열을 저장해 할 용도로 위 프로퍼티를 사용합니다. film 데이터를 저장하는 일반적인 배열이지만, ```fetchFilms()``` 변경을 통해 더 편하게 사용할 수 있습니다.
+
+Before:
+```swift
+print(films.all[0].title)
+```
+
+After:
+```swift
+self.items = films.all
+self.tableView.reloadData()
+```
+
+이것으로 
