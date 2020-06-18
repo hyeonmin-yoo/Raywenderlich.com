@@ -459,3 +459,71 @@ extension Starship: Displayable {
 [Fetching the Starship Data](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-012)
 
 
+starship 데이터를 가져오기 위해서는 새로운 네트워킹 호출이 필요합니다. **DetailViewController.swift** 파일을 열어 아래의 import 구문을 추가합니다.
+
+```swift
+import Alamofire
+```
+
+다음으로, 아래의 코드를 파일의 가장 아래에 추가합니다.
+
+```swift
+extension DetailViewController {
+  // 1
+  private func fetch<T: Decodable & Displayable>(_ list: [String], of: T.Type) {
+    var items: [T] = []
+    // 2
+    let fetchGroup = DispatchGroup()
+    
+    // 3
+    list.forEach { (url) in
+      // 4
+      fetchGroup.enter()
+      // 5
+      AF.request(url).validate().responseDecodable(of: T.self) { (response) in
+        if let value = response.value {
+          items.append(value)
+        }
+        // 6
+        fetchGroup.leave()
+      }
+    }
+    
+    fetchGroup.notify(queue: .main) {
+      self.listData = items
+      self.listTableView.reloadData()
+    }
+  }
+}
+```
+
+코드 해석입니다.
+1. ```Starship```은 여러분이 표시하고자 하는 영화 리스트를 포함하고 있습니다. ```Film```과 ```Starship```은 ```Displayable```이기 때문에, 네트워크 요청을 하기 위해 제네릭 헬퍼(generic helper)를 사용할 수 있습니다. 아이템 타입(type)만 알면 결과를 올바르게 디코딩 할 수 있습니다.
+1. 각각의 요청은 비동기적으로, 순서없는 다중 호출(multiple calls)을 가능하도록 만들어야 하므로, dispatch group을 사용하고 이를 통해 모든 호출이 완료됨을 알수 있습니다.
+1. 리스트의 각 항목(item)을 반복합니다.
+1. 생성한 dispatch group에의 입장을 의미합니다.
+1. starship 데이터를 가져오기 위 요청(request)를 만들고, 휴효성을 검사하를 하고, 응답받은 데이터를 적절한 타입으로 디코드합니다.
+1. 리퀘스트 완료 핸들러에서, dispatch group으로부터 떠남을 알립니다.
+1. dispatch group이 ```leave()```를 받으면 이제부터는 메인 큐(main queue)에서 작업이 실행됨을 알립니다. 리스트를 ```listData```에 저장하고, 리스트-테이블-뷰를 reload 합니다.
+
+헬퍼(helper)가 만들어 졌으므로, 이제 진짜로 starships 리스트를 가져올 차례입니다. 아래의 코드를 extension 내부에 추가하겠습니다.
+
+```swift
+func fetchList() {
+  // 1
+  guard let data = data else { return }
+  
+  // 2
+  switch data {
+  case is Film:
+    fetch(data.listItems, of: Starship.self)
+  default:
+    print("Unknown type: ", String(describing: type(of: data)))
+  }
+}
+```
+
+이 코드는...
+1. ```data```가 optional이기 때문에, 작업전에 혹시 ```nil```이 아닌지 확인합니다.
+1. 헬퍼 메소드를 작동하는 방법을 결정하려면 데이터 유형을 사용하십시오.
+1. 해당 
