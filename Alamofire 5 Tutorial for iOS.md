@@ -330,3 +330,39 @@ cell.detailTextLabel?.text = item.subtitleLabelText
 ## 디테일 뷰 업데이트 하기
 [Updating the Detail View Controller](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-009)
 
+먼저, 화면상에서 선택된 아이템을 등록하는 코드를 작성하겠습니다. ```var items: [Displayable] = []``` 아래에 코드를 추가 하십시오.
+
+```swift
+var selectedItem: Displayable?
+```
+
+화면상에서 선택된 영화 정보는 위의 프로퍼티에 저장됩니다.
+
+```tableView(_:willSelectRowAt:)```는 아래와 같이 고치겠습니다.
+
+```swift
+selectedItem = items[indexPath.row]
+return indexPath
+```
+
+ 선택된 행의 영화 정보는 ```selectedItem``` 프로퍼티에 저장됩니다.
+ 
+```prepare(for:sender:)```는 아래와 같이 고치겠습니다.
+ 
+ Before:
+ ```swift
+ destinationVC.data = nil
+```
+ 
+ After:
+```swift
+ destinationVC.data = selectedItem
+```
+
+위 코드로 디테일 뷰의 ```data``` 프로퍼티에 테이블 뷰에서 선택된 영화의 정보가 할당 됩니다.
+
+빌드-런하여 여러분이 선택한 영화가 디테일 뷰에 제대로 표시되는지 확인하십시오.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/4-1.png" height="500">
+</p>
