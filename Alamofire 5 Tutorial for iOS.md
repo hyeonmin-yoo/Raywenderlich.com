@@ -276,7 +276,7 @@ AF.request("https://swapi.dev/api/films")
 
 코드 분석입니다. films API에 데이터를 요청했고, HTTP status code 200에서 299까지 체크함으로서 유효성 체크를 함으로서 응답받은 데이터(response)가 유효함을 확실히 했으며, 마지막으로 응답 받은 데이터를 만들어둔 데이터 모델(data model)로 디코드(decode) 했습니다. Nice! :]
 
-## 테이블 뷰 준비하기
+## 테이블 뷰 설정하기
 [Setting up Your Table View](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-008)
 
 MainTableViewController의 가장 위에 다음 코드를 추가하겠습니다.
@@ -298,4 +298,35 @@ self.items = films.all
 self.tableView.reloadData()
 ```
 
-이것으로 
+코드 분석입니다. 첫 번째 라인에서 ```items```에 취득한 모든 데이터를 할당했습니다. 그리고 두 번째 라인에서 테이블 뷰를 reload 했습니다.
+
+테이블 뷰에 내용을 보여주기 위해서는 반드시 추가 작업을 해 주어야 합니다. ```tableView(_:numberOfRowsInSection:) ```의 내용을 아래와 같이 바꾸도록 하겠습니다.
+
+```swift
+return items.count
+```
+
+위 작업을 통해 films 데이터의 갯수만큼 테이블 뷰의 셀(cell)이 생성됩니다.
+
+다음으로, 바로 아래에 ```tableView(_:cellForRowAt:)```의 내용으로 아래 코드를 삽입 하겠습니다.
+
+```swift
+let item = items[indexPath.row]
+cell.textLabel?.text = item.titleLabelText
+cell.detailTextLabel?.text = item.subtitleLabelText
+```
+
+여서에서는 셀에 ```Displayable```을 프로토콜을 준수하는 items 프로퍼티를 통해 영화 타이틀(film name)과 에피스드 ID(episode ID) 설정 했습니다.
+빌드-런하면 아래와 같은 화면을 볼수 있을 것 입니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/3-1.png" height="500">
+</p>
+
+여러분은 지금까지 서버로부터 데이터를 취득하여, 데이터 모델로 디코딩하고, 그 데이터 모델을 뷰 컨트롤러의 프로퍼티에 할당하고, 테이블 뷰로 하여금 그 데이터를 표시하도록 하는 작업을 했습니다.
+
+다음은 각 셀(cells)을 탭(tap) 했을 때, 디테일-뷰(detail view)로 이동하는 작업을 하겠습니다.
+
+## 디테일 뷰 업데이트 하기
+[Updating the Detail View Controller](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-009)
+
