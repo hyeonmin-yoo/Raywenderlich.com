@@ -366,3 +366,96 @@ return indexPath
 <p align="center">
   <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/4-1.png" height="500">
 </p>
+
+## 멀티 비동기 데이터 취득
+[Fetching Multiple Asynchronous Endpoints](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-010)
+
+이제까지는, films에서 **하나의** 데이터를 배열 형태로 돌려주는 요청을 했습니다. 
+
+```Film``` 데이터를 구성을 살펴보면 ```starship```이라는 ```[String]``` 형태의 데이터를 볼 수 있습니다. 이 프로퍼티는 모든 데이터가 아니라 배열형태의 엔드포인트 starship 데이터를 제공합니다. 필요 이상으로 많은 데이터를 제공하지 않고 데이터에 접근하기 위해 사용하는 일반적인 패턴입니다.
+
+예를 들어, 이미 본 영화이기에 테이블-뷰상에서 *The Phantom Menace*에 탭하지 않는다면, 굳이 해당 영화에 대한 데이터를 가져오는 것은 자원 낭비, 대역폭 낭비가 될 것입니다. 그 대신에 여러분이 탭한 혹은 원하는 starship 데이터만을 요청, 응답 받는다면 더욱 경제적, 효율적일 것입니다.
+
+### Starships 데이터 모델 만들기
+[Creating a Data Model for Starships](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-011)
+
+starships 데이터를 요청하기 전에, 먼저 starship 데이터를 담을 데이터 모델을 만들 필요가 있습니다.
+
+Networking그룹에서 Starship.swif이라는 파일명으로 새로운 파일을 만들어 아래의 코드를 추가합니다.
+
+```swift
+struct Starship: Decodable {
+  var name: String
+  var model: String
+  var manufacturer: String
+  var cost: String
+  var length: String
+  var maximumSpeed: String
+  var crewTotal: String
+  var passengerTotal: String
+  var cargoCapacity: String
+  var consumables: String
+  var hyperdriveRating: String
+  var starshipClass: String
+  var films: [String]
+  
+  enum CodingKeys: String, CodingKey {
+    case name
+    case model
+    case manufacturer
+    case cost = "cost_in_credits"
+    case length
+    case maximumSpeed = "max_atmosphering_speed"
+    case crewTotal = "crew"
+    case passengerTotal = "passengers"
+    case cargoCapacity = "cargo_capacity"
+    case consumables
+    case hyperdriveRating = "hyperdrive_rating"
+    case starshipClass = "starship_class"
+    case films
+  }
+}
+```
+
+다른 일반적인 데이터 모델과 마찬가지로, 단순히 사용하길 원하는 응답 데이터를 위한 프로퍼티를 만들고 상응하는 코딩 키(coding keys)를 맵핑해 주면 됩니다.
+
+앞선 데이터 요청과 마찬가지로 Starships 데이터도 화면에 표시되어야 하기 때문에 ```Starship```은 ```Displayable``` 프로토콜을 준수해야 합니다. 아래의 코드를 파일의 가장 아랫 부분에 추가하겠습니다.
+
+```swift
+extension Starship: Displayable {
+  var titleLabelText: String {
+    name
+  }
+  
+  var subtitleLabelText: String {
+    model
+  }
+  
+  var item1: (label: String, value: String) {
+    ("MANUFACTURER", manufacturer)
+  }
+  
+  var item2: (label: String, value: String) {
+    ("CLASS", starshipClass)
+  }
+  
+  var item3: (label: String, value: String) {
+    ("HYPERDRIVE RATING", hyperdriveRating)
+  }
+  
+  var listTitle: String {
+    "FILMS"
+  }
+  
+  var listItems: [String] {
+    films
+  }
+}
+```
+
+이전에 ```film```에서 그랬던 것과 같이, 이 Starship extension은 ```DetailViewController```이 데이터 모델로부터 정확한 라벨과 값을 갖도록 합니다.
+
+### Starship 데이터 가져오기
+[Fetching the Starship Data](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-012)
+
+
