@@ -255,3 +255,26 @@ request.responseDecodable(of: Films.self) { (response) in
 <p align="center">
   <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/2-1-650x108.png" width="650">
 </p>
+
+## 메서드 체이닝
+[Method Chaining](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-007)
+
+Alamofire는 메서드 체이닝(Method Chaining)을 사용합니다. 한 메서드의 결과값 혹은 객체를 통해 다른 함수를 호출하는 방법입니다. 이를 통해 코드를 더 간결하고 깔끔하게 유지할 수 있습니다.
+
+```fetchFilms()```의 코드를 아래와 같이 바꿈으로서 직접 메서드 체이닝을 경험해 보겠습니다.
+ 
+```swift
+AF.request("https://swapi.dev/api/films")
+  .validate()
+  .responseDecodable(of: Films.self) { (response) in
+    guard let films = response.value else { return }
+    print(films.all[0].title)
+  }
+```
+
+위 단일행은 이전에 여러 행으로 수행하던 작업을 정확하게 수행할 뿐만 아니라 유효성 검사도 추가했습니다.
+
+코드 분석입니다. films API에 데이터를 요청했고, HTTP status code 200에서 299까지 체크함으로서 유효성 체크를 함으로서 응답받은 데이터(response)가 유효함을 확실히 했으며, 마지막으로 응답 받은 데이터를 만들어둔 데이터 모델(data model)로 디코드(decode) 했습니다. Nice! :]
+
+## 테이블 뷰 준비하기
+[Setting up Your Table View](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-008)
