@@ -526,4 +526,10 @@ func fetchList() {
 이 코드는...
 1. ```data```가 optional이기 때문에, 작업전에 혹시 ```nil```이 아닌지 확인합니다.
 1. 헬퍼 메소드를 작동하는 방법을 결정하려면 데이터 유형을 사용하십시오.
-1. 해당 
+1. 해당 데이터가 ```Film```이면 관계된 리스트는 starship으로 지정합니다.
+
+이제 starship 데이터를 가져올수 있게 되었으므로 다음으로 가져온 데이터를 화면에 표시해 보도록 하겠습니다.
+
+### 테이블-뷰 업데이트 하기
+[Updating Your Table View](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-013)
+
