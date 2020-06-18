@@ -533,3 +533,27 @@ func fetchList() {
 ### 테이블-뷰 업데이트 하기
 [Updating Your Table View](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-013)
 
+```tableView(_:cellForRowAt:)```에서 ```return cell``` 위에 아래 코드를 추가 하겠습니다.
+
+```swift
+cell.textLabel?.text = listData[indexPath.row].titleLabelText
+```
+
+위 코드는 ```textLabel```에 매핑된 타이틀을 입력합니다.
+
+마지막으로, 아래의 코드를 ```viewDidLoad()``` 맨 아랫부분에 추가합니다.
+
+```swift
+fetchList()
+```
+
+빌-런하고 영화 하나를 탭하면 디테일-뷰에 선택한 영화 데이터가 보여질 것입니다. ~~Neat, right?~~
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/5-1.png" height="500">
+</p>
+
+이제 앱이 꽤 그럴듯해 보이기 시작합니다. 그러나 메인-뷰-컨트롤러(main view controller)를 보면 서치-바(search bar)가 아직 작동하지 않는 것을 알수 있습니다. 다음 작업으로 이 서치-바를 통해 영화 타이틀로 검색하는 기능에 착수하겠습니다.
+
+## 리퀘스트에 매개변수 설정하기
+[Sending Parameters With a Request](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-014)
