@@ -229,7 +229,7 @@ CodingKeys에서 정의한대로, 서버에서 ```results``` 로 이름 붙여�
 
 > ```Codable```에 대해서 보다 자세히 알고자 한다면, [Encoding and Decoding in Swift](https://www.raywenderlich.com/3418439-encoding-and-decoding-in-swift) 튜토리얼을 참조 하십시오.
 
-이제 **MainTableViewController.swift** 팔일로 이동해서 ```fetchFilms()```의 코드를...
+이제 **MainTableViewController.swift** 파일로 이동해서 ```fetchFilms()```의 코드를...
 
 Before
 ```swift
