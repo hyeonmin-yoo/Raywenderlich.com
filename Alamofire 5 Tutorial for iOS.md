@@ -669,6 +669,14 @@ tableView.reloadData()
 
 ~~That's great!~~ 그러나 아직 완전하지는 않습니다. 여러 ships 중 하나를 탭하면 빈 페이지를 보게 될 것입니다. 이 부분은 이전에 해 둔 작업 덕에 어렵지 않게 고칠 수 있습니다. 심지에 디버그 콘솔(debug console)을 보면 힌트를 얻을 수 있습니다.
 
-### Ship 상세정보 표시하기
+### Ship 관련 영화 상세정보 표시하기
 [Display a Ship’s List of Films](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-017)
 
+**DetailViewController.swift** 파일을 열어 ```fetchList()```를 찾습니다. 현재는 영화와 리스트를 가져오는 방법만 알고 있습니다만 우주선에 대한 리스트를 가져와야 합니다. swift문에서 default: 위에 다음을 추가하십시오.
+
+```swift
+case is Starship:
+  fetch(data.listItems, of: Film.self)
+```
+
+위 
