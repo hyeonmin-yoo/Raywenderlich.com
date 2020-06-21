@@ -557,3 +557,73 @@ fetchList()
 
 ## 리퀘스트에 매개변수 설정하기
 [Sending Parameters With a Request](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-014)
+
+검색 기능이 제대로 작동 하려면 검색어와 일치하는 검색어 목록이 필요합니다. 이 기능을 만들기 위해 검색어를 엔드포인트(endpoint)에 보내 starships 리스트를 가져와야 합니다.
+
+먼저 film 엔드포인트 API 주소는, [https://swapi.dev/api/films](https://swapi.dev/api/films)입니다. 모든 starships에 관한 데이터 엔드포인트는 [https://swapi.dev/api/starships](https://swapi.dev/api/starships)입니다.
+
+아래는 starchip 엔드포인트의 예시입니다. film의 리스폰스 데이터와 유사합니다.
+
+```swift
+success({
+  count = 37;
+  next = "<null>";
+  previous = "<null>";
+  results =  ({...})
+})
+```
+
+유일하게 다른 점이 있다면, ```results``` 데이터가 하나의 리스트 dp ahems starships 데이터가 있다는 점 입니다. Alamofire의 ```request```는 단지 URL만 포함하지는 않습니다. key-value로 이루어진 매개변수 또한 포함할 수 있습니다. 검색 기능을 동작하기 위해 swapi.dev API는 여러분이 보낸 매개변수를 받아들입니다. 이것으로 ```serar```라는 key와 검색어라는 value를 사용합니다.
+
+본격적인 검색 기능 구현이 들어가기 전에 앞서 그랬던 것처럼, 리스폰스 데이터를 디코딩 할 새로운 모델, ```Starships```를 만들겠습니다.
+
+### Starships 디코딩 하기
+[Decoding Starships](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-015)
+
+Networking 그룹에 Starships.swift 파일을 만들고 아래의 코드를 추가 하겠습니다.
+
+```swift
+struct Starships: Decodable {
+  var count: Int
+  var all: [Starship]
+  
+  enum CodingKeys: String, CodingKey {
+    case count
+    case all = "results"
+  }
+}
+```
+이전과 같이, 필요한 데이터인 ```count``` ```results```만 맵핑 하겠습니다.
+
+다음으로, MainTableViewController.swift 파일을 열고, ```fetchFilms()``` 아래에 starships 데이터를 요청하는 함수를 추가합니다.
+
+```swift
+func searchStarships(for name: String) {
+  // 1
+  let url = "https://swapi.dev/api/starships"
+  // 2
+  let parameters: [String: String] = ["search": name]
+  // 3
+  AF.request(url, parameters: parameters)
+    .validate()
+    .responseDecodable(of: Starships.self) { response in
+      // 4
+      guard let starships = response.value else { return }
+      self.items = starships.all
+      self.tableView.reloadData()
+  }
+}
+```
+
+코드분석 입니다.
+
+1. starship 데이터를 요청할 URL을 설정합니다.
+1. 엔드포인트에 보낼 key-value 매개변수를 설정합니다.
+1. 여러분은 이전과 같이 request를 만들고 있습니다만, 이번에는 매개변수를 더했습니다. 또한, ```validate```를 통해 유효성 검사를, 디코딩을 위해 Starships를 기정했습니다.
+1. 마지막으로, 리퀘스트가 완료되면 starchips.all 데이터를 테이블-뷰의 데이터롤 설정하고 테이블-뷰를 reload 합니다.
+
+위 코드의 URL은 실제로, ```https://swapi.dev/api/starships?search={name}``` 같은 형태가 됩니다. 여기서 ```{name}```은 입력한 검색어가 됩니다.
+
+### Ships 찾기 
+[Searching for Ships](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-016)
+
