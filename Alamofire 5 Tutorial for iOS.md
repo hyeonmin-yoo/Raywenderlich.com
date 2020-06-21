@@ -627,3 +627,48 @@ func searchStarships(for name: String) {
 ### Ships 찾기 
 [Searching for Ships](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-016)
 
+```searchBarSearchButtonClicked(_:)```에 아래 코드를 추가하는 것으로 시작 하겠습니다.
+
+```swift
+guard let shipName = searchBar.text else { return }
+searchStarships(for: shipName)
+```
+
+위 코드는 입력한 검색어를 추출해 ```searchStarships(for:)```에 전달 혹은 호출하는 역할을 합니다.
+
+만약 유저가 검색을 취소하여 film 리스트를 다시 표시하려면 API에서 리스트를 다시 가져올 수는 있지만 좋은 설계 방식은 아닙니다. 대신에 영화목록을 캐시(cache)하여 빠르고 효율적으로 다시 표시할 수 있습니다. 영화 리스트를 캐시하려면 클래스 상단에 다음 속성을 추가하십시오.
+
+```swift
+var films: [Film] = []
+```
+
+다음으로, ```fetchFilms()```의 ```guard``` 구문을 다음에 아래의 코드를 추가합니다.
+
+```swift
+self.films = films.all
+```
+
+이렇게 하면 나중에 쉽게 접근 가능하도록 film 리스트가 저장됩니다.
+
+이제 ```searchBarCancelButtonClicked(_:)```에 아래 코드를 추가합니다.
+
+```swift
+searchBar.text = nil
+searchBar.resignFirstResponder()
+items = films
+tableView.reloadData()
+```
+
+위 코드가 실행 되면, 입력된 검색어가 삭제되고, ```resignFirstResponder()```를 통해 키보드가 감춰집니다. 그리고 테이블-뷰는 reload 됩니다.
+
+빌드-런하여 **Wing**을 검색합니다. 아래와 같이 모든 이름 혹은 모델명에 "wing"이 들어가는 ships을 볼수 있습니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/6-1.png" height="500">
+</p>
+
+~~That's great!~~ 그러나 아직 완전하지는 않습니다. 여러 ships 중 하나를 탭하면 빈 페이지를 보게 될 것입니다. 이 부분은 이전에 해 둔 작업 덕에 어렵지 않게 고칠 수 있습니다. 심지에 디버그 콘솔(debug console)을 보면 힌트를 얻을 수 있습니다.
+
+### Ship 상세정보 표시하기
+[Display a Ship’s List of Films](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-017)
+
