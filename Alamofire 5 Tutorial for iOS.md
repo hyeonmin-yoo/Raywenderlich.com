@@ -679,4 +679,29 @@ case is Starship:
   fetch(data.listItems, of: Film.self)
 ```
 
-위 
+위 코드는 주어진 starship의 film 리스트를 가져옵니다.
+
+빌드-런하여 starship을 검색하고 검색 결과를 선택하면 그 starship에 대한 상세사항과 리스트가 아래와 같이 보여질 것입니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/8-2.png" height="500">
+</p>
+
+이제 앱을 완성했습니다. ~~Congratulations!~~
+
+## 끝으로...
+[Where to Go From Here?](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-018)
+
+글 상단의 Download Materials 버튼을 통해 완성된 프로젝트를 다운로드 할 수 있습니다. 
+
+앱을 만드는 동안 여러분은 Alamofire의 기본에 대해서 많은 부분을 배웠습니다. Alamofire는 networking 호출을 아주 간단한 설정만으로 만들수 있게 하고, 어떻게 request 함수에 URL을 설정해 기본적인 호출을 하는지 배웠습니다. 거기에 더해, 몇 가지 매개변수를 보냄으로서 조금 더 복잡한 리퀘스트도 연습도 했습니다. 리퀘스트 채이닝(request chaining)과 유효성 체크, 리스폰스 데이터를 JSON으로 변환하고 어떻게 커스텀 데이터 모델로 변환하는지 알아 보았습니다.
+
+이 튜토리얼은 아주 기본적인 사항에 대한 설명입니다. 만약 더 깊은 지식을 원한다면 [Alamofire](https://github.com/Alamofire/Alamofire) 사이트의 레퍼런스를 참조하십시오.
+
+또한, Apple’s URLSession을 깊게 공부해 보는 것을 추천합니다. Alamofire는 URLSession 위에서 작동하기 때문입니다.
+* [Ray Wenderlich – URLSession Tutorial: Getting Started](https://www.raywenderlich.com/3244963-urlsession-tutorial-getting-started)
+* [Apple URL Session Programming Guide](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html)
+
+이 튜토리얼이 도움이 되었기를 바랍니다. 아래의 코멘트를 참조하고, 필요하다면 질문해 주심시오.
+
+> 이 글에 대한 토론/댓글을 보거나 작성하실 분은 [클릭](https://forums.raywenderlich.com/t/alamofire-5-tutorial-for-ios-getting-started-raywenderlich-com/97820/8)하십시오.
