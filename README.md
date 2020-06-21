@@ -10,7 +10,8 @@
 
 
 ## 목록, Contents
-* [What's New In Swift5.2](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/What's%20New%20In%20Swift5.2.md)
-* [SwiftUI Tutorial for iOS: Creating Charts](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/SwiftUI%20Tutorial%20for%20iOS:%20Creating%20Charts.md)
-* [Alamofire 5 Tutorial for iOS: Getting Started](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/Alamofire%205%20Tutorial%20for%20iOS.md)
+
 * [iOS MVVM Tutorial: Refactoring from MVC](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/iOS%20MVVM%20Tutorial:%20Refactoring%20from%20MVC.md)
+* [Alamofire 5 Tutorial for iOS: Getting Started](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/Alamofire%205%20Tutorial%20for%20iOS.md)
+* [SwiftUI Tutorial for iOS: Creating Charts](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/SwiftUI%20Tutorial%20for%20iOS:%20Creating%20Charts.md)
+* [What's New In Swift5.2](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/What's%20New%20In%20Swift5.2.md)
