@@ -619,7 +619,7 @@ func searchStarships(for name: String) {
 
 1. starship 데이터를 요청할 URL을 설정합니다.
 1. 엔드포인트에 보낼 key-value 매개변수를 설정합니다.
-1. 여러분은 이전과 같이 request를 만들고 있습니다만, 이번에는 매개변수를 더했습니다. 또한, ```validate```를 통해 유효성 검사를, 디코딩을 위해 Starships를 기정했습니다.
+1. 여러분은 이전과 같이 request를 만들고 있습니다만, 이번에는 매개변수를 더했습니다. 또한, ```validate```를 통해 유효성 검사를, 디코딩을 위해 Starships를 지정 했습니다.
 1. 마지막으로, 리퀘스트가 완료되면 starchips.all 데이터를 테이블-뷰의 데이터롤 설정하고 테이블-뷰를 reload 합니다.
 
 위 코드의 URL은 실제로, ```https://swapi.dev/api/starships?search={name}``` 같은 형태가 됩니다. 여기서 ```{name}```은 입력한 검색어가 됩니다.
