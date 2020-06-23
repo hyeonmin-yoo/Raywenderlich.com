@@ -16,7 +16,6 @@
 * **Level**: Intermediate
 * [**Download Materials**](https://koenig-media.raywenderlich.com/uploads/2020/03/MVVM-From-MVC-1.zip)
 
-
 **Model-View-ViewModel (MVVM)** 디자인 패턴(design pattern)은 최근 몇년동안 iOS 개발자 커뮤니티에서 주목을 받고 있습니다. MVVM 패턴은 **view model** 이라는 새로운 개념을 포함하며 view cotroller와 동반(companion)하는 객체입니다.
 
 <p align="center">
@@ -60,8 +59,22 @@ API 키 발급 받았다면 Xcode로 돌아가서 **Services** 그룹 아래, We
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/12/Simulator-Screen-Shot-iPhone-8-2019-12-21-at-22.36.20.png" width="281">
 </p>
 
-## MVVM의 기능과 책무
+## MVVM의 기능과 의무
 [Introducing MVVM Roles and Responsibilities](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-002)
+
+본격적인 리팩토링에 앞서, view model과 view controller가 MVVM 패턴에 있어 어떤 기능을 하는지에 대한 이해는 필수적입니다.
+
+view controller는 뷰를 교체하고 뷰의 인풋(inputs)을 view model에 전달할 의무를 가집니다. 결과적으로, 다른 모든 코드 혹은 로직은 view model로 이동 될 것입니다.
+
+그에 반해, view model은 아래와 같은 의무를 가집니다.
+* **Model inputs**: view의 inputs를 취해 model을 업데이트 합니다.
+* **Model outputs**: Model의 outputs를 view controller에 전달합니다.
+* **Formatting**: view controller에서 표시할 model 데이터를 형식화 합니다.
+
+## MVC 구조에 익숙해 지기
+[Becoming Familiar With the Existing App Structure](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-003)
+
+> 만약, MVC에 익숙하고 바로 리팩토링하길 원한다면 [Data Binding Using Box](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-005) 섹션으로 이동하십시오.
 
 
 
