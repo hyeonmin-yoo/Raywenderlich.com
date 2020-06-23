@@ -42,6 +42,26 @@ MVVM 패턴은 iOS에서 MVC(Model-View-Controller) 패턴에 비해 몇 가지 
 ## 시작하며...
 [Getting Started](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-001)
 
+위의 **Download Materials** 링크를 통해 프로젝트를 다운로드 받아 begin 프로젝트를 실행합니다.
+
+이 앱은 weatherbit.io에서 최신 날씨 정보를 가져와 요약된 현재 날씨를 보여줍니다.
+
+Weatherbit API를 사용하기 위해서는 무료 API 키(key)를 발급받을 필요가 있습니다. 이 앱은 여러분 소유의 Weatherbit API 키를 추가하지 전까지 제대로 동작하지 않으므로 [https://www.weatherbit.io/account/create](https://www.weatherbit.io/account/create)로 이동해 key 등록하기 바랍니다.
+
+API 키 발급 받았다면 Xcode로 돌아가서 **Services** 그룹 아래, WeatherbitService.swift 파일을 열겠습니다. 그리고 apiKey 변수에 발급받은 API 키를 지정합니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/03/Screen-Shot-2020-04-01-at-6.44.14-PM.png" width="750">
+</p>
+
+빌드-런 하면 오늘 날짜의 McGaheysville, VA 지역의 날씨를 확인할 수 있습니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/12/Simulator-Screen-Shot-iPhone-8-2019-12-21-at-22.36.20.png" width="281">
+</p>
+
+## MVVM의 기능과 책무
+[Introducing MVVM Roles and Responsibilities](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-002)
 
 
 
