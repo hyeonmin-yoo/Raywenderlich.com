@@ -6,7 +6,7 @@
 
 -----
 
-# iOS용 MVVM 튜토리얼: MVC에서 리팩토링 하기
+# iOS를 위한 MVVM 튜토리얼: MVC에서 리팩토링 하기
 
 [iOS MVVM Tutorial: Refactoring from MVC](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc) by [Chuck Krutsinger](https://www.raywenderlich.com/u/ckrutsinger)
 
