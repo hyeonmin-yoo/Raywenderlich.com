@@ -94,6 +94,88 @@ MVC 설계에 익숙해 지는 시간을 갖겠습니다. 먼저, 아래와 같�
 
 ### WeatherViewController
 
+리팩터링을 하면서 여러분은 주로 ```WeatherViewController```에 집중하게 될 것입니다. ```WeatherViewController```의 private 프로퍼티를 살펴보는 것으로 시작 하겠습니다.
+
+```swift
+// 1
+private let geocoder = LocationGeocoder()
+// 2
+private let defaultAddress = "McGaheysville, VA"
+// 3
+private let dateFormatter: DateFormatter = {
+  let dateFormatter = DateFormatter()
+  dateFormatter.dateFormat = "EEEE, MMM d"
+  return dateFormatter
+}()
+// 4
+private let tempFormatter: NumberFormatter = {
+  let tempFormatter = NumberFormatter()
+  tempFormatter.numberStyle = .none
+  return tempFormatter
+}()
+```
+
+1. ```geocoder```는 *Washington DC*와 같은 ```string``` input을 취하고 위도(latitude)와 경도(longitude)로 변환하여 날씨 서비스에 보내집니다.
+1. ```defaultAddress```에는 기본 주소를 담습니다.
+1. ```DateFormatter```는 날짜 형식을 지정합니다.
+1. 마지막으로, ```NumberFormatter```는 정수(integer)값 형태로 온도를 표현하도록 합니다.
+
+```viewDidLoad()```를 보겠습니다.
+
+```swift
+override func viewDidLoad() {
+  geocoder.geocode(addressString: defaultAddress) { [weak self] locations in
+    guard 
+      let self = self,
+      let location = locations.first 
+      else { 
+        return 
+      }
+    self.cityLabel.text = location.name
+    self.fetchWeatherForLocation(location)
+  }
+}
+```
+
+```viewDidLoad()```는 ```geocoder```를 호출하여 ```defaultAddress```를 ```Location```으로 변환합니다. 콜백(callback)은 ```cityLabel```의 text를 위해 사용 됩니다. 그 후, ```location```은 ```fetchWeatherForLocation(_:)```에 전달되어 날씨 데이터를 취득하게 됩니다.
+
+마지막 부분은 ```WeatherViewController```의 ```fetchWeatherForLocation(_:)```입니다.
+
+```swift
+func fetchWeatherForLocation(_ location: Location) {
+  //1
+  WeatherbitService.weatherDataForLocation(
+    latitude: location.latitude,
+    longitude: location.longitude) { [weak self] (weatherData, error) in
+    //2
+    guard 
+      let self = self,
+      let weatherData = weatherData 
+      else { 
+        return 
+      }
+    self.dateLabel.text =
+      self.dateFormatter.string(from: weatherData.date)
+    self.currentIcon.image = UIImage(named: weatherData.iconName)
+    let temp = self.tempFormatter.string(
+      from: weatherData.currentTemp as NSNumber) ?? ""
+    self.currentSummaryLabel.text =
+      "\(weatherData.description) - \(temp)℉"
+    self.forecastSummary.text = "\nSummary: \(weatherData.description)"
+  }
+}
+```
+
+위 함수는 두 가지 기능을 합니다.
+
+1. 위도와 경도를 전달하여 WeatherbitService를 호출 합니다.
+1. WeatherbitService의 콜백으로 뷰를 업데이트 합니다.
+
+이제, 기존 앱 구조에 대한 충분히 익숙해 졌으므로 리팽토링을 시작 하겠습니다.
+
+## Box를 이용한 데이터 바인딩
+[Data Binding Using Box](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-005)
+
 
 
 
