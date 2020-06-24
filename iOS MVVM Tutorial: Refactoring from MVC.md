@@ -76,7 +76,23 @@ view controller는 뷰를 교체하고 뷰의 인풋(inputs)을 view model에 �
 
 > 만약, MVC에 익숙하고 바로 리팩토링하길 원한다면 [Data Binding Using Box](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-005) 섹션으로 이동하십시오.
 
+MVC 설계에 익숙해 지는 시간을 갖겠습니다. 먼저, 아래와 같이 프로젝트 네비게이터(Project navigator)를 열겠습니다.
 
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/03/Screen-Shot-2020-04-01-at-7.24.52-PM.png" width="272">
+</p>
+
+**Controllers** 그룹에서 **WeatherViewController.swift** 파일을 볼 수 있습니다. 이 파일에서 여러분은 model과 service 관련 코드를 제거할 것입니다. 
+
+**Models** 그룹에서 두 가지 모델 오브젝트인 ```WeatherbitData```와 ```Location```이 있습니다. ```WeatherbitData```는 struct 구조이고 Weatherbit API에서 보내진 데이터를 담습니다. ```Location```은 단순화된 struct 구조로 Apple의 ```CLLocation``` 서비스에서 보내진 데이터를 담습니다.
+
+**Services** 그룹은 각 파일명이 의미하는 바와 같이, **WeatherbitService.swift**는 Weatherbit API에서 날씨 데이터를 가져오는 기능을, **LocationGeocoder.swift**는 string을 ```Location```으로 변환하는 기능을 구현 합니다.
+
+**Storyboards** 그룹에는 LaunchScreen과 Weather 스토리보드가 포함되어 있습니다.
+
+**Utilities** 그룹과 **View Models**에는 아직 아무 파일도 없지만, 여러분이 리팩터하는 동안 몇몇 파일을 만들 것 입니다.
+
+### WeatherViewController
 
 
 
