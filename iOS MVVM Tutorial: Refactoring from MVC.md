@@ -176,8 +176,48 @@ func fetchWeatherForLocation(_ location: Location) {
 ## Box를 이용한 데이터 바인딩
 [Data Binding Using Box](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-005)
 
+MVVM에서 view model의 outputs을 view에 바인딩해야 합니다. 그런 의미에서 간단한 메카니즘(mechanism)으로 view와 view model의 outputs를 바인딩하는 utility가 필요 합니다. 여기에는 아래와 같은 몇가지 방법이 있습니다.
 
+* **Key-Value Observing or KVO**: key-paths를 이용하여 property를 관찰하고 프로퍼티의 값이 변경된 경우에는 통지(notifications)를 합니다.
+* **Functional Reactive Programming or FRP**: 이벤트(events)와 데이터를 연속적(streams)으로 처리하는 체계(paradaigm) 입니다. 새로 출시된 Combine 프레임워크가 바로 FRP에 대한 Apple의 접근법 입니다. RxSwift와 ReactiveSwift 또한 인기있는 FRP 프레임워크 입니다.
+* **Delegation**: 값의 변화에 따라 notification을 전달하는 방법으로 델리게이트 함수(delegate methods)를 이용 합니다.
+* **Boxing**: 값이 변화할 때 프로퍼티 옵서버(property observers)를 이용하여 notification 합니다.
 
+이 튜토리얼에서 여러분은 boxing으로 binding할 것입니다. 규모가 작은 앱에서는 boxing을 조금 거스터마이징(a custom implementation)하여 구현하는 것으로 충분 합니다.
+
+**Utilities** 그룹 아래에서 Box.swift 파일을 새로 만들어 아래의 코드를 추가 하겠습니다. 
+
+```swift
+final class Box<T> {
+  //1
+  typealias Listener = (T) -> Void
+  var listener: Listener?
+  //2
+  var value: T {
+    didSet {
+      listener?(value)
+    }
+  }
+  //3
+  init(_ value: T) {
+    self.value = value
+  }
+  //4
+  func bind(listener: Listener?) {
+    self.listener = listener
+    listener?(value)
+  }
+}
+```
+
+코드 해석입니다.
+
+1. 각 ```Box```는 해당 값이 변경 되었을 경우에 통지해줄 ```Listener```를 가질수 있습니다.
+1. ```Box```는 generic type 값(value)를 가집니다. ```didSet``` 프로퍼티 옵서버는 어떤 변화도 감지하고 ```Listener```에 update된 새 값을 통지 합니다.
+1. 이니셜라이저(initializer)는 ```Box``` 초기값을 지정합니다.
+1. ```Listener```가 ```Box```에서 ```bind(listener:)```를 호출하면 listener가 되고 즉시 ```Box```의 현재값을 통지 합니다.
+
+## WeatherViewModel 만들기
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-011)
