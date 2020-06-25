@@ -220,7 +220,39 @@ final class Box<T> {
 ## WeatherViewModel 만들기
 [Data Binding Using Box](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-005)
 
+view와 view model 사이에서 데이터를 바인딩 하는 메카니즘을 구현했으므로, 이제 실제 view model을 만들 차례입니다. MVVM에서 view controller는 어떤 서비스(services)도 호출하지 않고 어떤 model유형도 조작하지 않습니다. 그 책임은 view model에 배타적으로 부여됩니다.
 
+리팩토링은 geocoder와 Weatherbit service 관련 코드를 ```WeatherViewController```에서 ```WeatherViewModel```로 옮기는 작업부터 시작하겠습니다. 그 후, ```WeatherViewController``` view와 view model 프로퍼티를 바인딩하겠습니다.
+
+먼저, **View Models**그룹에 **WeatherViewModel.swift** 파일을 생성하고 아래의 코드를 추가합니다.
+
+```swift
+// 1
+import UIKit.UIImage
+// 2
+public class WeatherViewModel {
+}
+```
+
+코드 분석입니다.
+
+1. 먼저, ```UIKit.UIImage```을 import 했습니다. 다른 ```UIKit``` 타입은 import 될 필요가 없습니다. 경험에 따르면 ```UIKit```은 절대 import 될 필요가 없습니다.
+1. 테스트 때 접근하기 위해 ```WeatherViewModel``` 클래스의 수식어로 ```public```을 지정합니다. 
+
+**WeatherViewController.swift** 파일을 열어 아래의 프로퍼티를 추가합니다.
+
+```swift
+private let viewModel = WeatherViewModel()
+```
+
+WeatherViewController에 view model을 초기화 했습니다.
+
+다음으로, ```WeatherViewController```의 ```LocationGeocoder``` 로직을 ```WeatherViewModel```로 옮깁니다. 아래의 작업을 마무리 하기전까지는 컴파일(compile) 하지 않겠습니다.
+
+1. 먼저, ```WeatherViewController```에서 ```defaultAddress```를 잘라내기(cut) 해서 ```WeatherViewModel```에 붙여넣기 하겠습니다. 그후, **static** 수식어를 추가해 줍니다.
+1. 다음으로, ```WeatherViewController```에서 ```geocoder```를 잘라내기 해서 역시 ```WeatherViewModel```에 붙여 넣습니다.
+
+```WeatherViewModel```에서 아래의 
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-011)
