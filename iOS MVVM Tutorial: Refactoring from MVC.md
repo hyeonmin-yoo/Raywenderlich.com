@@ -218,6 +218,9 @@ final class Box<T> {
 1. ```Listener```가 ```Box```에서 ```bind(listener:)```를 호출하면 listener가 되고 즉시 ```Box```의 현재값을 통지 합니다.
 
 ## WeatherViewModel 만들기
+[Data Binding Using Box](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-005)
+
+
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-011)
