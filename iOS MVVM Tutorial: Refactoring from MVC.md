@@ -293,6 +293,7 @@ override func viewDidLoad() {
 다음으로,  **WeatherViewController.swift**에서 ```fetchWeatherForLocation(_:)```를 삭제합니다.
 
 아직 위치에 따른 날씨 데이터가 필요하므로 **WeatherViewModel.swift**에서 아래의 리펙터된 ```fetchWeatherForLocation(_:)```를 추가합니다.
+
 ```swift
 private func fetchWeatherForLocation(_ location: Location) {
   WeatherbitService.weatherDataForLocation(
@@ -307,6 +308,38 @@ private func fetchWeatherForLocation(_ location: Location) {
   }
 }
 ```
+
+현재까지 콜백(callback)은 아무런 기능도 하지 않지만 다음 섹션에서 함수를 완성하게 됩니다.
+
+마지막으로, ```WeatherViewModel```에 생성자(initializer)를 추가 합니다.
+
+```swift
+init() {
+  changeLocation(to: Self.defaultAddress)
+}
+```
+
+view model은 location에 default address를 지정하는 것으로 시작합니다.
+
+~~Phew!~~ 지금까지 수 많은 리팩토링을 해왔습니다. 여러분은 모든 service와 geocoder 로직을 view controller에서 view model로 이동했습니다. view controller의 코드 얼마나 눈에 띄게 줄어들었는지, 그리고 또 얼마나 단순해 졌는지 보십시오!
+
+앱이 어떻게 동작하는지 보기 위해 ```defaultAddress```를 여러분의 현재 위치로 설정하여 빌드-런 해보길 바랍니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/12/Simulator-Screen-Shot-iPhone-8-2019-12-21-at-23.27.09.png" height="500">
+</p>
+
+여러분의 현재 위치를 기반으로 도시 이름은 제대로 표시되지만 날씨 정보와 날짜는 잘못되어 있습니다. 이 값들은 단지 스토리보드(storyboard)에 임의로 입력된 값을 보여주고 있기 때문입니다. 다음 섹션에서 이 부분을 바로잡도록 하겠습니다.
+
+## MVVM에서 데이터 형식화 하기
+[Formatting Data in MVVM](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-007)
+
+
+
+
+
+
+
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-011)
