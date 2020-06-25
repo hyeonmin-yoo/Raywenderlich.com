@@ -252,7 +252,61 @@ WeatherViewController에 view model을 초기화 했습니다.
 1. 먼저, ```WeatherViewController```에서 ```defaultAddress```를 잘라내기(cut) 해서 ```WeatherViewModel```에 붙여넣기 하겠습니다. 그후, **static** 수식어를 추가해 줍니다.
 1. 다음으로, ```WeatherViewController```에서 ```geocoder```를 잘라내기 해서 역시 ```WeatherViewModel```에 붙여 넣습니다.
 
-```WeatherViewModel```에서 아래의 
+```WeatherViewModel```에서 아래의 프로퍼티를 추가합니다.
+
+```swift
+let locationName = Box("Loading...")
+```
+
+위 코드는 앱이 런치(launch)될 때부터 위치 데이터를 가져올 때까지 **"Loading..."** 을 표시해 줍니다.
+
+다음 함수를 ```WeatherViewModel```에 추가합니다.
+
+```swift
+func changeLocation(to newLocation: String) {
+  locationName.value = "Loading..."
+  geocoder.geocode(addressString: newLocation) { [weak self] locations in
+    guard let self = self else { return }
+    if let location = locations.first {
+      self.locationName.value = location.name
+      self.fetchWeatherForLocation(location)
+      return
+    }
+  }
+}
+```
+
+이 코드는 ```geocoder```를 통해 대이터를 가져오기 전에 통해 ```locationName.value```를 **Loading…**으로 변경합니다. ```geocoder```가 검색을 완료하면 ```locationName.value```를 업데이트하고 위치에 대한 날씨 정보를 가져옵니다.
+
+```WeatherViewController.viewDidLoad()```는 아래와 같이 교체합니다.
+
+```swift
+override func viewDidLoad() {
+  viewModel.locationName.bind { [weak self] locationName in
+    self?.cityLabel.text = locationName
+  }
+}
+```
+
+이 코드는 ```cityLabel.text```에 ```viewModel.locationName```를 바인딩합니다.
+
+다음으로,  **WeatherViewController.swift**에서 ```fetchWeatherForLocation(_:)```를 삭제합니다.
+
+아직 위치에 따른 날씨 데이터가 필요하므로 **WeatherViewModel.swift**에서 아래의 리펙터된 ```fetchWeatherForLocation(_:)```를 추가합니다.
+```swift
+private func fetchWeatherForLocation(_ location: Location) {
+  WeatherbitService.weatherDataForLocation(
+    latitude: location.latitude, 
+    longitude: location.longitude) { [weak self] (weatherData, error) in
+      guard 
+        let self = self,
+        let weatherData = weatherData 
+        else { 
+          return 
+        }
+  }
+}
+```
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-011)
