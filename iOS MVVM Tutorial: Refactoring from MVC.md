@@ -336,8 +336,39 @@ view model은 location에 default address를 지정하는 것으로 시작합니
 
 MVVM에서 view controller는 view로서의 의무만을 가집니다. view model은 항상 각종 서비스로부터의 데이터터를 view에 나타내기 위한 형식화의 의무를 가집니다.
 
+다음 리팩토링에서는 데이터 형식화(data formatting) 관련 코드를 ```WeatherViewController```에서 ```WeatherViewModel```로 옮기겠습니다. 또한, 위치가 변경되면 날씨 데이터가 업데이트 되도록 나머지 데이터 바인딩을 모두 추가하겠습니다.
 
+데이터 포맷팅을 지정하는 것으로 시작하겠습니다. 먼저, ```WeatherViewController```에서 ```dateFormatter``` 프로퍼티를 잘라내기 하여 ```WeatherViewModel```에 붙여넣기 합니다.
 
+다음으로, ```WeatherViewModel```에 아래의 코드를 ```locationName``` 아래에 추가합니다.
+
+```swift
+let date = Box(" ")
+```
+
+위 코드는 공백(a blank string)으로 초기화 되지만, Weatherbit API에서 날씨 정보가 도착하면 업데이트 됩니다.
+
+아래의 코드를 ```WeatherViewModel.fetchWeatherForLocation(_:)```안의 API fetch 클로져의 끝 뒤에 위에 추가합니다.
+
+```swift
+self.date.value = self.dateFormatter.string(from: weatherData.date)
+```
+
+위 코드는 날씨 데이터가 도착할 때 마다 ```date```를 업데이트합니다.
+
+마지막으로, 아래의 코드를 ```WeatherViewController.viewDidLoad()```의 끝에 붙여넣기 합니다.
+
+```swift
+viewModel.date.bind { [weak self] date in
+  self?.dateLabel.text = date
+}
+```
+
+빌드-런 합니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/12/Simulator-Screen-Shot-iPhone-8-2019-12-21-at-23.36.28.png" height="500">
+</p>
 
 
 
