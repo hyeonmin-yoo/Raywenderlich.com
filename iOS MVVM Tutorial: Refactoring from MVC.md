@@ -334,7 +334,7 @@ view model은 location에 default address를 지정하는 것으로 시작합니
 ## MVVM에서 데이터 형식화 하기
 [Formatting Data in MVVM](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-007)
 
-
+MVVM에서 view controller는 view로서의 의무만을 가집니다. view model은 항상 각종 서비스로부터의 데이터터를 view에 나타내기 위한 형식화의 의무를 가집니다.
 
 
 
