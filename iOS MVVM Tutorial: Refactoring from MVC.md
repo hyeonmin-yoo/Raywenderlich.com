@@ -370,7 +370,10 @@ viewModel.date.bind { [weak self] date in
   <img src="https://koenig-media.raywenderlich.com/uploads/2019/12/Simulator-Screen-Shot-iPhone-8-2019-12-21-at-23.36.28.png" height="500">
 </p>
 
+모든 날씨 정보가 이제 ```defaultAddress```에 업데이트 됩니다. 만약, 현재 위치를 사용한 경우 창을보고 데이터가 올바른지 확인하십시오. :] 다음으로 MVVM이 어떻게 앱 기능을 확장할 수 있는지 살펴 보겠습니다.
 
+MVVM에 기능 추가하기
+[Adding Functionality in MVVM](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-008)
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-011)
