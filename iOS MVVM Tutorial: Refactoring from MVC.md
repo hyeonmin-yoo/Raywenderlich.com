@@ -375,6 +375,59 @@ viewModel.date.bind { [weak self] date in
 ## MVVM에 기능 추가하기
 [Adding Functionality in MVVM](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-008)
 
+지금까지, 기본 위치의 날씨를 확인할 수 있었습니다. 그러나 다른 곳의 날씨를 알고 싶다면 어떻게해야 할까요? 버튼 하나를 추가하여 다른 위치의 날씨를 확인하는 기능을 만들어 보겠습니다. 
+
+화면 위 왼쪽에 로케이션 마크(➤)가 있다는 것, 눈치 채셨나요? 아직 작동하지 않지만, 새로운 위치를 묻는 알림에 연결하여 새로운 위치의 날씨를 가져 오겠습니다.
+
+먼저, **Weather.storyboard**을 열고, 보조창(assistant editor)에는 **WeatherViewController.swift**를 열겠습니다.
+
+다음으로, **Change Location Button**을 콘트롤 드래그(contrl-drag)하여 ```WeatherViewController```의 끝에 ```promptForLocation```이라고 함수명을 지정 하겠습니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/12/assistanteditor.gif" height="409">
+</p>
+
+```promptForLocation(_:)```에 아래의 코드를 추가합니다.
+
+```swift
+//1
+let alert = UIAlertController(
+  title: "Choose location",
+  message: nil,
+  preferredStyle: .alert)
+alert.addTextField()
+//2
+let submitAction = UIAlertAction(
+  title: "Submit", 
+  style: .default) { [unowned alert, weak self] _ in
+    guard let newLocation = alert.textFields?.first?.text else { return }
+    self?.viewModel.changeLocation(to: newLocation)
+}
+alert.addAction(submitAction)
+//3
+present(alert, animated: true)
+```
+
+코드 분석입니다:
+1. ```UIAlertController```를 만들고 텍스트-필드를 추가했습니다.
+1. ```Submit```하기 위한 액션 버튼(action button)을 추가하였고 이 버튼은 ```viewModel.changeLocation(to:)```에 새로운 위치의 string을 전달합니다.
+1. ```alert```를 표시합니다.
+
+빌드-런 합니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/12/locations.gif" width="231">
+</p>
+
+Paris, France나 Paris, Texas등의 위치를 입력합니다. 앱이 어떻게 반응하는지 보기위해 *ggggg*와 같은 무의미한 input을 시도해 봅니다.
+
+잠시 생각해 보면 view controller에 이 새로운 기능을 추가하는데 얼마나 적은 코드만이 필요했는지 알수 있습니다. 뷰 모델을 한 번 호출하면 해당 위치의 날씨 데이터를 업데이트하기 위한 흐름이 촉발됩니다. ~~Smart, right?~~
+
+다음섹션에서는 MVVM에서 어떻게 유닛 테스트(Unit Test)를 하는지 배우게 됩니다.
+
+## MVVM에서 유닛 테스트하기
+[Unit Testing With MVVM](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-009)
+
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-011)
 
