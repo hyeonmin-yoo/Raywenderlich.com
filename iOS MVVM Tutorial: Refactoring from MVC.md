@@ -428,6 +428,16 @@ Paris, France나 Paris, Texas등의 위치를 입력합니다. 앱이 어떻게 
 ## MVVM에서 유닛 테스트하기
 [Unit Testing With MVVM](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-009)
 
+MVVM의 이점 중 하나는 자동화된 테스트(automated tests)를 쉽게 만들수 있다는 점 입니다.
+
+MVC에서 view controller를 테스트 할 때는 ```UIKit```을 반드시 인스턴트화(instantiate) 해야 했습니다. 그런 다음, 작업을 시작하고 결과를 확인하려면 뷰-계층(view hierarchy)을 철저히 조사해 봐야 했습니다.
+
+MVVM
+
+
+
+
+
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-011)
 
