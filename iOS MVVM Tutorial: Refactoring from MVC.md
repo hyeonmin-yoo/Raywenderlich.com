@@ -503,9 +503,11 @@ func testChangeLocationUpdatesLocationName() {
 * **Memory**: 뷰 모델을 도입할 때는 반드시 메모리 관리(memory management)와 메모리 유지 주기(memory retain cycles)를 알고 있어야 합니다.
 
 ## 끝으로...
-[Where to Go From Here](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-011)
+[Where to Go From Here](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-011)
 
 글 상단의 **Download Materials** 버튼을 통해 완성된 프로젝트를 다운로드 할 수 있습니다.
+
+MVVM은 
 
 
 > 이 글에 대한 토론/댓글을 보거나 작성하실 분은 [클릭](https://forums.raywenderlich.com/t/ios-mvvm-tutorial-refactoring-from-mvc-raywenderlich-com/100270/24)하십시오.
