@@ -507,7 +507,14 @@ func testChangeLocationUpdatesLocationName() {
 
 글 상단의 **Download Materials** 버튼을 통해 완성된 프로젝트를 다운로드 할 수 있습니다.
 
-MVVM은 
+MVVM은 이제 프로페셔널 iOS 개발자가 가져야하는 핵심 개발역략이 되었습니다. 많은 전문분야에서 MVVM에 익숙하고 이를 구현할 수 있어야 합니다. 반응형 프로그래밍(reactive programming)을 가능하게 하는 Apple의 Combine 프레임 워크를 도입하는 경우 특히 그렇습니다.
 
+[Design Patterns By Tutorials](https://store.raywenderlich.com/products/design-patterns-by-tutorials)은 MVVM 패턴에 관한 더 많은 소스를 제공합니다.
+
+만약 여러분이 Combine 프레임 워크와 MVVM 구현 방법에 대해 더 알고 싶다면, [MVVM with Combine](https://www.raywenderlich.com/228229/mvvm-with-combine-tutorial-for-ios) 튜토리얼이나 [Combine: Asynchronous Programming With Swift](https://www.raywenderlich.com/236269/combine-asynchronous-programming-with-swift-complete-book-available)책을 참고하십시오.
+
+Key-Value 옵서빙에 대해서는 [What’s New in Foundation: Key-Value Observing](https://www.raywenderlich.com/179709/screencast-whats-new-foundation-key-value-observing-kvo)을 확인하십시오.
+
+여러분이 이 튜토리얼과 함께 즐거운 경험이 됐길 바랍니다.
 
 > 이 글에 대한 토론/댓글을 보거나 작성하실 분은 [클릭](https://forums.raywenderlich.com/t/ios-mvvm-tutorial-refactoring-from-mvc-raywenderlich-com/100270/24)하십시오.
