@@ -517,4 +517,4 @@ Key-Value 옵서빙에 대해서는 [What’s New in Foundation: Key-Value Obser
 
 여러분이 이 튜토리얼과 함께 즐거운 경험이 됐길 바랍니다.
 
-> 이 글에 대한 토론/댓글을 보거나 작성하실 분은 [클릭](https://forums.raywenderlich.com/t/ios-mvvm-tutorial-refactoring-from-mvc-raywenderlich-com/100270/24)하십시오.
+> 이 글에 대한 토론/댓글을 보거나 작성하실 분은 [클릭](https://forums.raywenderlich.com/t/ios-mvvm-tutorial-refactoring-from-mvc-raywenderlich-com/100270/2)하십시오.
