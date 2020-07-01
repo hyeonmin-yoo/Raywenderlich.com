@@ -432,10 +432,60 @@ MVVM의 이점 중 하나는 자동화된 테스트(automated tests)를 쉽게 �
 
 MVC에서 view controller를 테스트 할 때는 ```UIKit```을 반드시 인스턴트화(instantiate) 해야 했습니다. 그런 다음, 작업을 시작하고 결과를 확인하려면 뷰-계층(view hierarchy)을 철저히 조사해 봐야 했습니다.
 
-MVVM
+MVVM을 사용하면 보다 일반적인(conventional) 테스트를 작성할 수 있습니다. 일부 비동기 이벤트를 기다리는 경우가 있을 수도 있지만 대개의 경우, 작동 및 확인이 쉽습니다.
 
+MVVM이 view model 테스트를 얼마나 용이하게 하는지 확인하기 위해, ```WeatherViewModel```을 만들고 위치(location)를 변경 후, ```locationName``` 바인딩이 의도한 위치로 바뀌었는지 확인하겠습니다.
 
+먼저, **MVVMFromMVCTests**그룹에서 **Unit Test Case Class**파일을 **WeatherViewModelTests**으로 만들겠습니다.
 
+```import XCTest``` 바로 아래에 아래 코드를 추가합니다.
+
+```swift
+@testable import Grados
+```
+
+다음으로, 아래의 함수를 ```WeatherViewModelTests```에 추가합니다.
+
+```swift
+func testChangeLocationUpdatesLocationName() {
+  // 1
+  let expectation = self.expectation(
+    description: "Find location using geocoder")
+  // 2
+  let viewModel = WeatherViewModel()
+  // 3
+  viewModel.locationName.bind {
+    if $0.caseInsensitiveCompare("Richmond, VA") == .orderedSame {
+      expectation.fulfill()
+    }
+  }
+  // 4
+  DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+    viewModel.changeLocation(to: "Richmond, VA")
+  }
+  // 5
+  waitForExpectations(timeout: 8, handler: nil)
+}
+```
+
+위 코드의 설명은 아래와 같습니다.
+
+1. ```locationName``` 바인딩은 비동기입니다. ```expectation```을 사용하여 비동기 이벤트를 기다립니다.
+1. 테스트할 ```viewModel```의 인스턴트를 만듭니다.
+1. ```locationName```에 바인드하고 값이 일치하는 경우에만 expectation을 실행 합니다. 기본 주소와 같은 위치 이름 값은 무시하십시오. 반드시 예상 결과만 값만이 테스트 기대치를 충족 시킵니다.
+1. 위치를 변경하여 테스트를 시작 하십시오. 대기중인 지오코딩(geocoding) 작업이 먼저 완료 되도록 변경하기 전에 몇 초 정도 기다려야 합니다. 앱이 시작되면 지오코더 조회가 시작 됩니다. view model의 테스트 인스턴스를 만들면 지오 코더 조회도 시작됩니다. 몇 초 정도 기다리면 테스트 조회를 시작하기 전에 다른 조회를 완료 할 수 있습니다. [Apple’s documentation](https://developer.apple.com/documentation/corelocation/clgeocoder/1423509-geocodeaddressstring)의 문서에 따르면 `CLLocation` 요청 비율(the rate of requests)이 너무 높으면 오류(error)가 발생할 수 있다고 경고합니다.
+1. expectation이 충족 될 때까지 최대 8초 동안 기다립니다. 테스트는 예상 결과가 시간 초과 전에 도착한 경우에만 성공합니다.
+
+```testChangeLocationUpdatesLocationName()``` 옆에 있는 다이아몬드를 클릭하여 데스트를 실행 하십시오. 테스트에 통과하면 다이아몬드가 녹색 확인 표시로 바뀝니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2019/12/runtest.gif" height="600">
+</p>
+
+위 예제와 같은 방법으로 ```WeatherViewModel```의 다른 값을 확인하는 테스트를 작성할 수 있습니다. weatherbit.io에 대한 종속성을 피하기 위해 모의(mock) weather service를 사용하는 것이 이상적 입니다.
+
+## MVVM 리팩토링 복습
+[Reviewing The Refactoring to MVVM](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-010)
 
 
 ## 끝으로...
