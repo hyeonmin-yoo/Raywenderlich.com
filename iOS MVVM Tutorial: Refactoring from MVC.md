@@ -484,9 +484,23 @@ func testChangeLocationUpdatesLocationName() {
 
 위 예제와 같은 방법으로 ```WeatherViewModel```의 다른 값을 확인하는 테스트를 작성할 수 있습니다. weatherbit.io에 대한 종속성을 피하기 위해 모의(mock) weather service를 사용하는 것이 이상적 입니다.
 
-## MVVM 리팩토링 복습
+## MVVM 리팩토링 복습/이점
 [Reviewing The Refactoring to MVVM](https://www.raywenderlich.com/6733535-mvvm-from-the-ground-up#toc-anchor-010)
 
+여기까지 수고 많았습니다. 지금까지의 리팩토링 작업 내용을 되돌아 보면 몇 가지 이점을 발견할 수 있습니다.
+
+* **복잡성 감소(Reduced complexity)**: ```WeatherViewController```이 더 단순화 되었습니다.
+* **전문화(Specialized)**: ```WeatherViewController```는 더 이상 어떤 모델 타입(model types)에도 종속되지 않고 오로지 view의 역할에 집중합니다.
+* **분화(Separated)**: ```WeatherViewController```는 ```changeLocation(to:)```함수에서와 inputs을 보내는 작업, 혹은 outputs을 바인딩하는 작업 등 ```WeatherViewModel```과만 상호작용(interect)합니다.
+* **우수한 표현력(Expressive)**: ```WeatherViewModel```은 비지니스 로직(business logic)과 하위 레벨 뷰 로직(the low level view logic)을 분리합니다.
+* **우수한 유지보수(Maintainable)**: ```WeatherViewController```에 최소한의 수정만으로 기능을 추가할 수 있습니다.
+* **용이한 태스트(Testable)**: ```WeatherViewModel```는 상대적으로 테스트하기 쉽습니다.
+
+그러나, MVVM 사용 시에 고려해야 할 몇가지 상충관계(trade-offs)가 있습니다.
+* **Extra type**: MVVM에서는 몇 가지 새로운 모델 타입(model type)을 사용해야 합니다.
+* **Binding mechanism**: 이 튜토리얼에서 처럼(Box) 몇 가지 바인딩 수단을 사용해야 합니다.
+* **Boilerplate**: MVVM을 구현하기 위해서는 몇 가지 보일러플레이트(boilerplate)가 필요합니다.
+* **Memory**: 뷰 모델을 도입할 때는 반드시 메모리 관리(memory management)와 메모리 유지 주기(memory retain cycles)를 알고 있어야 합니다.
 
 ## 끝으로...
 [Where to Go From Here](https://www.raywenderlich.com/6733535-ios-mvvm-tutorial-refactoring-from-mvc#toc-anchor-011)
