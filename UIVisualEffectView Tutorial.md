@@ -36,7 +36,7 @@ Apple은 멋진 사용성과 디자인을 위해 iOS의 시스템 레벨에서�
 
 **Download Materials**버튼을 통해 starter 및 final 프로젝트를 다운로드 하십시오.
 
-여러분은 어떻게 블러를 사용하는지 배우기 위해, 새로운 Brothers Grimm fairy-tale app에 blur effetct를 추가하게 됩니다.
+여러분은 어떻게 블러를 사용하는지 배우기 위해, Brothers Grimm fairy-tale app에 blur effetct를 추가하게 됩니다.
 
 
 
