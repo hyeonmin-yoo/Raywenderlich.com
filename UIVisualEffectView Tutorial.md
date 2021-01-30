@@ -14,32 +14,31 @@
 * **Level**: Beginner
 * [**Download Materials**](https://koenig-media.raywenderlich.com/uploads/2020/11/UIVisualEffectsView_Materials.zip)
 
-여러분이 iOS앱을 개발해 본 적이 있다면, 아마도 네트워크를 통해 데이터에 접근해야 할 일이 있었을 것입니다. Swift의 Foundation에서 제공하는 ```URLSession```을 사용했을 수도 있습니다. ```URLSession```은 괜찮은 기능을 제공하지만, 가끔씩 사용하기에 불편하기도 합니다. 그리고 그런 이유로 이 튜토리얼이 쓰여졌습니다.
-
-**Alamofire**는 Swift를 기반(Swift-based)으로 만들어진 HTTP Networking 라이브러리입니다. Apple의 Foundation Networking 계층(stack) 위에서 일반적인 네트워킹 작업을 단순화하여 멋진 인터페이스(interface)를 제공합니다.
-
-이 Alamofire 튜토리얼에서는 아래와 같은 네트워킹 작업을 연습하게 됩니다.
-* 써드파티(a third-party) RESTful API에 데이터를 요청하기
-* 요구 매개변수(request parameters) 보내기
-* 응답 받은 데이터(response)를 JSON으로 변환하기
-* 응답받은 데이터를 Codable protocol을 사용하여 Swift data 모델(model)로 변환하기
-
 > Update note: 이 튜토리얼은 Ron Kliffer에 의해 Xcode 12, Swift 5, iOS 14 버전으로 업데이트 되었습니다. 원문은 Ryan Nystrom에 의해 쓰여졌습니다.
 
-iOS의 디자인이 iOS7에서 드라마틱하게 변화된 이래로, blur 효과는 앱 디자인에서 중요한 역할을 하게되었습니다. 블러효과가 적절히 사용되면 앱의 사용성과 디자인을 현저하게 개선합니다.
+iOS의 디자인이 iOS7에서 드라마틱하게 변화된 이래로, blur 효과는 앱 디자인에서 중요한 역할을 하게되었습니다. 블러효과(blur effect)가 적절히 사용되면 앱의 사용성과 디자인을 현저하게 개선합니다.
 
-Apple
+Apple은 멋진 사용성과 디자인을 위해 iOS의 시스템 레벨에서부터 블러효과를 사용합니다. 그 두가지 예로서, **Control Center**와 iOS 14의 **위젯 센터** **Widget Center**가 있습니다. 유저는 어떤 앱을 사용 도중에 **제어센터** **Control Center**나 **Widget Center**로 진입해도 블러효과가 적용되었기 때문에 그 흐름을 그대로 유지할 수 있게 됩니다. (**Control Center**와 **Widget Center**는 그 자체로 app이 아니라, 어떤 앱 위에 표시되는 일종의 패널(panels)입니다)
 
---------------------
+알림센터(**Notification Center**) 역시 블러 효과(blur effect)를 사용합니다. 그러나 전체 배경이 블러라기 보다는 알림창들의 배경에 각각 블러효과가 적용되어 있습니다. 블러효과는 보기에 멋질 뿐더러, 각 요소들이 적당히 돋보이도록 해줍니다.
+
+<p align="center">
+  <img src="https://koenig-media.raywenderlich.com/uploads/2020/10/UIVisualEffectsView_01-650x455.png" width="600">
+</p>
+
+여러분의 app에 빌트인(built-in) ```UIVisualEffectView````를 사용함으로서 위와 같은 종류의 블료효과를 구현할 수 있습니다! 이 튜토리얼에서 여러분은 블러효과로 여러분의 앱을 눈이 띄게 만들기 위해 알아야할 모든 내용을 아래와 같이 배우게 됩니다.
+* 블러의 어떻게 작동하는지에 대한 이해
+* 블러 디자인을 위한 계획
+* UIVisualEffectView 사용법
 
 ## 시작하며...
-[Getting Started](https://www.raywenderlich.com/6587213-alamofire-5-tutorial-for-ios-getting-started#toc-anchor-001)
+[Getting Started](https://www.raywenderlich.com/16125723-uivisualeffectview-tutorial-getting-started#toc-anchor-001)
 
-튜토리얼을 시작하기 위해 이 글 상단의 **Download Materials**을 통해 프로젝트를 다운로드하고 begin 폴더의 프로젝트를 열겠습니다.
+**Download Materials**버튼을 통해 starter 및 final 프로젝트를 다운로드 하십시오.
 
-이 튜토리얼을 위한 프로젝트 **StarWarsOpedia**는 스타워즈 영화 데이터에 빠르게 접근가능하고 ~~우주선(starships)에도 접근가능 합니다~~.
+여러분은 어떻게 블러를 사용하는지 배우기 위해, 새로운 Brothers Grimm fairy-tale app에 blur effetct를 추가하게 됩니다.
 
-빌드-런하면 아래와 같은 화면을 볼수 있습니다.
+
 
 <p align="center">
   <img src="https://koenig-media.raywenderlich.com/uploads/2020/01/1-1.png" width="231">
