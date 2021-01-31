@@ -11,7 +11,8 @@
 
 ## 목록, Contents
 
-* [ARC and Memory Management in Swift](https://www.raywenderlich.com/966538-arc-and-memory-management-in-swift) - In progress
+* UIVisualEffectView Tutorial: Getting Started - In progress
+* ARC and Memory Management in Swift - In progress
 * [iOS MVVM Tutorial: Refactoring from MVC](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/iOS%20MVVM%20Tutorial:%20Refactoring%20from%20MVC.md)
 * [Alamofire 5 Tutorial for iOS: Getting Started](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/Alamofire%205%20Tutorial%20for%20iOS.md)
 * [SwiftUI Tutorial for iOS: Creating Charts](https://github.com/hyeonmin-yoo/Raywenderlich.com/blob/master/SwiftUI%20Tutorial%20for%20iOS:%20Creating%20Charts.md)
